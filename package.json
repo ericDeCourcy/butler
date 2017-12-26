@@ -1,0 +1,11 @@
+{
+    "private": true,
+    "scripts": {
+        "start": "node ./src/run.js"
+    },
+    "dependencies": {
+        "discord.js": "^11.2.1",
+        "dotenv": "^4.0.0",
+        "request": "^2.83.0"
+    }
+}
