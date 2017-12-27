@@ -60,7 +60,13 @@ class Price extends Command {
                 ],
             }));
         }).catch(() => {
-            msg.channel.send('Error');
+            const text = `Could not fetch prices for "${from}".`;
+
+            if (sentMessage !== null) {
+                sentMessage.edit(text);
+            } else {
+                msg.channel.send(text);
+            }
         });
     }
 
