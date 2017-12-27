@@ -12,9 +12,18 @@ class Price extends Command {
 
     execute(msg, params = []) {
         const from = params[0].toLowerCase();
+        let sentMessage = null;
 
-        fetch(from).then(data => {
-            msg.channel.send(new RichEmbed({
+        msg.channel.send('Fetching...').then(message => {
+            sentMessage = message;
+
+            return fetch(from);
+        }).then(data => {
+            if (sentMessage === null) {
+                return Promise.reject();
+            }
+
+            sentMessage.edit(new RichEmbed({
                 title: `${data.name} [${data.symbol}]`,
                 url: `https://coinmarketcap.com/currencies/${data.id}`,
                 fields: [
