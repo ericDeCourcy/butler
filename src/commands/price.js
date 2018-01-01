@@ -23,9 +23,16 @@ class Price extends Command {
                 return Promise.reject();
             }
 
+            let color = 13369344; // Red.
+
+            if (parseFloat(data.percent_change_1h) > 0) {
+                color = 2728745; // Green.
+            }
+
             sentMessage.edit(new RichEmbed({
                 title: `${data.name} [${data.symbol}]`,
                 url: `https://coinmarketcap.com/currencies/${data.id}`,
+                color,
                 fields: [
                     {
                         name: 'Rank',
