@@ -2,9 +2,9 @@ const request = require('request');
 
 const base = 'https://api.coinmarketcap.com/v2/';
 
-const fetch = id => {
+const fetch = (id, conversion = 'BTC') => {
     return new Promise((resolve, reject) => {
-        request(`${base}ticker/${id}?convert=BTC`, (err, response, body) => {
+        request(`${base}ticker/${id}?convert=${conversion.toUpperCase()}`, (err, response, body) => {
             if (err) {
                 reject();
             }
