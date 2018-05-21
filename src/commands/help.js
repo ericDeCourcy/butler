@@ -14,6 +14,12 @@ class Help extends Command {
 
 ---
 
+**Donations:**
+
+NANO: xrb_1oyed1fzw688ahrg8yy73tya5fnj7xqigttkwmdh36edk5hfknbd6uu548h8
+
+---
+
 **Source Code:** https://github.com/oyed/cryptobutler`;
 
         msg.channel.send(content);
