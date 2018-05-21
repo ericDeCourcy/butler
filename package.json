@@ -4,6 +4,7 @@
         "start": "node ./src/run.js"
     },
     "dependencies": {
+        "dblapi.js": "^2.0.1",
         "discord.js": "^11.3.2",
         "dotenv": "^4.0.0",
         "request": "^2.86.0"
