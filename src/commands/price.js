@@ -1,6 +1,7 @@
 const { RichEmbed } = require('discord.js');
 const Command = require('./command');
 const { fetch } = require('./../cmc');
+const ticker = require('./../ticker');
 
 class Price extends Command {
 
@@ -12,26 +13,34 @@ class Price extends Command {
 
     execute(msg, params = []) {
         const from = params[0].toLowerCase();
+        let currency = null;
         let sentMessage = null;
 
         msg.channel.send('Fetching...').then(message => {
             sentMessage = message;
+            currency = ticker.getCurrency(from);
 
-            return fetch(from);
+            if (currency === null) {
+                return Promise.reject();
+            }
+
+            return fetch(currency.id);
         }).then(data => {
             if (sentMessage === null) {
                 return Promise.reject();
             }
 
+            const { USD, BTC } = data.quotes;
+
             let color = 13369344; // Red.
 
-            if (parseFloat(data.percent_change_1h) > 0) {
+            if (parseFloat(BTC.percent_change_1h) > 0) {
                 color = 2728745; // Green.
             }
 
             sentMessage.edit(new RichEmbed({
                 title: `${data.name} [${data.symbol}]`,
-                url: `https://coinmarketcap.com/currencies/${data.id}`,
+                url: `https://coinmarketcap.com/currencies/${data.website_slug}`,
                 color,
                 fields: [
                     {
@@ -41,32 +50,32 @@ class Price extends Command {
                     },
                     {
                         name: 'Cost (USD)',
-                        value: parseFloat(data.price_usd).toLocaleString('en-US'),
+                        value: parseFloat(USD.price).toLocaleString('en-US'),
                         inline: true,
                     },
                     {
                         name: 'Cost (BTC)',
-                        value: data.price_btc,
+                        value: `${BTC.price}`,
                         inline: true,
                     },
                     {
                         name: 'Change (1h)',
-                        value: `${data.percent_change_1h}%`,
+                        value: `${BTC.percent_change_1h}%`,
                         inline: true,
                     },
                     {
                         name: 'Change (24h)',
-                        value: `${data.percent_change_24h}%`,
+                        value: `${BTC.percent_change_24h}%`,
                         inline: true,
                     },
                     {
                         name: 'Change (7d)',
-                        value: `${data.percent_change_7d}%`,
+                        value: `${BTC.percent_change_7d}%`,
                         inline: true,
                     },
                 ],
             }));
-        }).catch(() => {
+        }).catch((a, b, c) => {
             const text = `Could not fetch prices for "${from}".`;
 
             if (sentMessage !== null) {

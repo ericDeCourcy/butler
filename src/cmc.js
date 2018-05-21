@@ -1,31 +1,42 @@
 const request = require('request');
-const tickers = require('./bags/tickers');
 
-const base = 'https://api.coinmarketcap.com/v1/';
-const tickerKeys = Object.keys(tickers);
+const base = 'https://api.coinmarketcap.com/v2/';
 
 const fetch = id => {
-    if (tickerKeys.indexOf(id) !== -1) {
-        id = tickers[id];
-    }
-
     return new Promise((resolve, reject) => {
-        request(`${base}ticker/${id}`, (err, response, body) => {
+        request(`${base}ticker/${id}?convert=BTC`, (err, response, body) => {
             if (err) {
                 reject();
             }
 
             const data = JSON.parse(body);
 
-            if (!Array.isArray(data) || !data.length) {
+            if (data.data === null) {
                 reject();
             }
 
-            resolve(data[0]);
+            resolve(data.data);
         });
     });
 };
 
+const listings = () => new Promise((resolve, reject) => {
+    request(`${base}listings`, (err, response, body) => {
+        if (err) {
+            reject();
+        }
+
+        const data = JSON.parse(body);
+
+        if (Array.isArray(data.data)) {
+            resolve(data.data);
+        } else {
+            reject();
+        }
+    });
+});
+
 module.exports = {
     fetch,
+    listings,
 };
