@@ -1,10 +1,10 @@
 require('dotenv').config();
 
-const client = require('./client');
+const { discord } = require('./client');
 const ticker = require('./ticker');
 const { parse } = require('./parser');
 
-client.on('message', msg => parse(msg));
+discord.on('message', msg => parse(msg));
 ticker.fetch();
 
 // Tell the process not to exit straight away.
@@ -18,7 +18,7 @@ const exit = () => {
     }
 
     killed = true;
-    client.destroy().then(() => {
+    discord.destroy().then(() => {
         process.exit();
     });
 };
