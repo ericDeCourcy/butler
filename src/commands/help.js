@@ -17,6 +17,7 @@ NANO: xrb_1oyed1fzw688ahrg8yy73tya5fnj7xqigttkwmdh36edk5hfknbd6uu548h8
 
 ---
 
+**Vote for CryptoButler:** https://discordbots.org/bot/395189067719114752/vote
 **Source Code:** https://github.com/oyed/cryptobutler`;
 
         msg.channel.send(content);

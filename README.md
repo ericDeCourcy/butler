@@ -5,6 +5,8 @@
 
 A general purpose Cryptocurrency Discord Bot.
 
+Feel free to vote for the Bot [on DiscordBots](https://discordbots.org/bot/395189067719114752/vote) if you enjoy using it.
+
 ## Commands
 
 Commands must be prefixed with `!butler`. See below for examples.
