@@ -1,5 +1,8 @@
 # CryptoButler
 
+[![Status](https://discordbots.org/api/widget/status/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
+[![Servers](https://discordbots.org/api/widget/servers/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
+
 Yet another Discord Cryptocurrency Bot.
 
 ## Commands
@@ -33,3 +36,7 @@ Prints out Help & Usage text for the Butler. E.g.
 ```
 !butler help
 ```
+
+## Donations
+
+NANO: xrb_1oyed1fzw688ahrg8yy73tya5fnj7xqigttkwmdh36edk5hfknbd6uu548h8
