@@ -35,7 +35,7 @@ Returns the balance of the given Wallet. Currently supported currencies:
 
 - `btc`
 - `eth`
-- `token` (Returns all ERC-20 Tokens)
+- `tokens` (Returns all ERC-20 Tokens)
 
 ```
 !butler balance btc 15urYnyeJe3gwbGJ74wcX89Tz7ZtsFDVew
