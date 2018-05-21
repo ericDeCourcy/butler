@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
 const Command = require('./command');
-const { fetch } = require('./../cmc');
+const { fetch } = require('./../services/cmc');
 const ticker = require('./../ticker');
 
 class Price extends Command {
@@ -75,7 +75,7 @@ class Price extends Command {
                     },
                 ],
             }));
-        }).catch((a, b, c) => {
+        }).catch(() => {
             const text = `Could not fetch prices for "${from}".`;
 
             if (sentMessage !== null) {

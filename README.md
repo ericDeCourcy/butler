@@ -29,6 +29,19 @@ Converts `to` in to `from`. Supports FIAT currencies.
 !butler convert 50 nano usd
 ```
 
+### `balance`
+
+Returns the balance of the given Wallet. Currently supported currencies:
+
+- `btc`
+- `eth`
+- `token` (Returns all ERC-20 Tokens)
+
+```
+!butler balance btc 15urYnyeJe3gwbGJ74wcX89Tz7ZtsFDVew
+!butler balance token 0x57d90b64a1a57749b0f932f1a3395792e12e7055
+```
+
 ### `help`
 
 Prints out Help & Usage text for the Butler. E.g.

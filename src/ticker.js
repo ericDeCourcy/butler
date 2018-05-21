@@ -1,4 +1,4 @@
-const { listings } = require('./cmc');
+const { listings } = require('./services/cmc');
 
 class Ticker {
 

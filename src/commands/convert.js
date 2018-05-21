@@ -1,5 +1,5 @@
 const Command = require('./command');
-const { fetch } = require('./../cmc');
+const { fetch } = require('./../services/cmc');
 const fiat = require('./../bags/fiat');
 const ticker = require('./../ticker');
 
