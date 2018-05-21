@@ -9,6 +9,7 @@ class Help extends Command {
 ---
 
 \`${prefix} price [id]\` - Fetches data from CoinMarketCap for the given ID.
+\`${prefix} convert [amount] [from] [to]\` - Converts a given amount of \`from\` to currency \`to\`. Supports
 \`${prefix} help\` - Prints this text.
 
 ---
