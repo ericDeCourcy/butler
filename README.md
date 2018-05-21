@@ -3,7 +3,7 @@
 [![Status](https://discordbots.org/api/widget/status/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
 [![Servers](https://discordbots.org/api/widget/servers/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
 
-Yet another Discord Cryptocurrency Bot.
+A general purpose Cryptocurrency Discord Bot.
 
 ## Commands
 
