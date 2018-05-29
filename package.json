@@ -9,6 +9,7 @@
         "dotenv": "^4.0.0",
         "erlpack": "github:discordapp/erlpack",
         "request": "^2.87.0",
+        "pg": "^7.4.3",
         "uws": "^10.148.0"
     }
 }

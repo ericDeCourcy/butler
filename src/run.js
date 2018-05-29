@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const { discord } = require('./client');
 const ticker = require('./ticker');
+const db = require('./db');
 const { parse } = require('./parser');
 
 discord.on('message', msg => parse(msg));
