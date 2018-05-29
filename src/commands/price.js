@@ -32,10 +32,15 @@ class Price extends Command {
 
             const { USD, BTC } = data.quotes;
 
+            let change = BTC;
             let color = 13369344; // Red.
 
             if (parseFloat(BTC.percent_change_1h) > 0) {
                 color = 2728745; // Green.
+            }
+
+            if (currency.id === 1) {
+                change = USD;
             }
 
             sentMessage.edit(new RichEmbed({
@@ -60,17 +65,17 @@ class Price extends Command {
                     },
                     {
                         name: 'Change (1h)',
-                        value: `${BTC.percent_change_1h}%`,
+                        value: `${change.percent_change_1h}%`,
                         inline: true,
                     },
                     {
                         name: 'Change (24h)',
-                        value: `${BTC.percent_change_24h}%`,
+                        value: `${change.percent_change_24h}%`,
                         inline: true,
                     },
                     {
                         name: 'Change (7d)',
-                        value: `${BTC.percent_change_7d}%`,
+                        value: `${change.percent_change_7d}%`,
                         inline: true,
                     },
                 ],
