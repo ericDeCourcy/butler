@@ -104,6 +104,7 @@ class Ticker {
                         Promise.all(updates).then(() => {
                             const diff = ((now() - startTime) / 1000).toFixed(2);
                             console.log(`Fetched ${count} (${pages} pages) in ${diff}s`);
+                            this.updating = false;
                             resolve();
                         });
                     }
