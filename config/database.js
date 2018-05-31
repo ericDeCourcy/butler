@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const {
     POSTGRESQL_PORT,
     POSTGRESQL_HOST,
