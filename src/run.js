@@ -23,6 +23,8 @@ sequelize.authenticate().then(() => {
 }).then(() => {
     return discordEvents.register();
 }).then(() => {
+    discordEvents.status('Cryptocurrencies');
+
     // Register any on-going Jobs.
     jobs.register();
 

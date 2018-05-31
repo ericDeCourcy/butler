@@ -5,7 +5,7 @@ const Dbl = require('dblapi.js');
 // Discord.
 const discord = new Discord.Client();
 discord.login(process.env.DISCORD_TOKEN).then(() => {
-    discord.user.setActivity('Cryptocurrencies', {
+    discord.user.setActivity('starting up', {
         type: 'WATCHING',
     });
 });
