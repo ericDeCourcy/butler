@@ -1,7 +1,7 @@
 const { STRING, INTEGER, DATE, FLOAT } = require('sequelize');
 const { sequelize } = require('./../client');
 
-const Crypto = sequelize.define('crypto', {
+const Crypto = sequelize.define('cryptos', {
     id: {
         type: INTEGER,
         primaryKey: true,

@@ -1,6 +1,6 @@
 module.exports = {
     up: (queryInterface, { STRING, INTEGER, DATE, FLOAT }) => {
-        return queryInterface.createTable('crypto', {
+        return queryInterface.createTable('cryptos', {
             id: {
                 type: INTEGER,
                 primaryKey: true,
@@ -50,6 +50,6 @@ module.exports = {
         });
     },
     down: (queryInterface, Sequelize) => {
-        return queryInterface.dropTable('crypto');
+        return queryInterface.dropTable('cryptos');
     },
 };
