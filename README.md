@@ -23,14 +23,11 @@ Use the `price` command to fetch stats from CoinMarketCap.
 
 ### `convert`
 
-**Temporarily removed.**
-
-Converts `to` in to `from`. Supports FIAT currencies.
+Converts `to` in to `from`.
 
 ```
 !butler convert 10 btc nano
-!butler convert 10 usd eth
-!butler convert 50 nano usd
+!butler convert 10 ada eth
 ```
 
 ### `balance`
