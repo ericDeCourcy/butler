@@ -2,10 +2,14 @@
 
 [![Status](https://discordbots.org/api/widget/status/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
 [![Servers](https://discordbots.org/api/widget/servers/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
+[![Discord](https://img.shields.io/discord/license/oyed/cryptobutler.svg?style=flat-square)](https://discord.gg/2VBKbEH)
+[![License](https://img.shields.io/github/license/oyed/cryptobutler.svg?style=flat-square)](https://github.com/oyed/cryptobutler/blob/master/LICENSE)
 
 A general purpose Cryptocurrency Discord Bot.
 
-Feel free to vote for the Bot [on DiscordBots](https://discordbots.org/bot/395189067719114752/vote) if you enjoy using it.
+Feel free to [vote for the Bot on DiscordBots](https://discordbots.org/bot/395189067719114752/vote) if you enjoy using it.
+
+Need help? Found an issue? [Join us on Discord.](https://discord.gg/2VBKbEH)
 
 ## Commands
 
