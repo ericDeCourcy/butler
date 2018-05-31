@@ -5,7 +5,7 @@ class Help extends Command {
     execute(msg, params = []) {
         const prefix = process.env.COMMAND_PREFIX;
         const content = `\`${prefix} price [id]\` - Fetches data from CoinMarketCap for the given ID.
-\`${prefix} convert [amount] [from] [to]\` - Converts a given amount of \`from\` to currency \`to\`.
+\`${prefix} convert [amount] [from] [to]\` - **Temporarily removed.** Converts a given amount of \`from\` to currency \`to\`.
 \`${prefix} balance [ticker] [address]\` - Returns the balance of the given Wallet. Supports \`eth\`, \`btc\` and \`tokens\` (ERC-20).
 \`${prefix} help\` - I'll give you 10 guesses.
 

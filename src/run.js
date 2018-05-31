@@ -1,12 +1,36 @@
 require('dotenv').config();
 
-const { discord } = require('./client');
+const { discord, sequelize } = require('./client');
+const discordEvents = require('./discord');
 const ticker = require('./ticker');
-const db = require('./db');
-const { parse } = require('./parser');
+const jobs = require('./jobs');
+const models = require('./bags/models'); // Registers Models before initialising.
 
-discord.on('message', msg => parse(msg));
-ticker.fetch();
+console.log('Starting...');
+
+sequelize.authenticate().then(() => {
+    return models.Crypto.sync({
+        force: true,
+    });
+}).then(() => {
+    return models.Server.sync({
+        force: true,
+    });
+}).then(() => {
+    return ticker.fetch();
+}).then(() => {
+    return ticker.update();
+}).then(() => {
+    return discordEvents.register();
+}).then(() => {
+    // Register any on-going Jobs.
+    jobs.register();
+
+    console.log('Ready!');
+}).catch(e => {
+    console.error(e);
+    exit();
+});
 
 // Tell the process not to exit straight away.
 process.stdin.resume();
@@ -17,6 +41,8 @@ const exit = () => {
     if (killed) {
         return;
     }
+
+    jobs.kill();
 
     killed = true;
     discord.destroy().then(() => {
