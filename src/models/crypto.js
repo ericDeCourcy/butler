@@ -1,4 +1,4 @@
-const { STRING, INTEGER, DATE, FLOAT } = require('Sequelize');
+const { STRING, INTEGER, DATE, FLOAT } = require('sequelize');
 const { sequelize } = require('./../client');
 
 const Crypto = sequelize.define('crypto', {

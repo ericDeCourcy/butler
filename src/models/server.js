@@ -1,4 +1,4 @@
-const { STRING } = require('Sequelize');
+const { STRING } = require('sequelize');
 const { sequelize } = require('./../client');
 
 const Server = sequelize.define('servers', {
