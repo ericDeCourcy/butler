@@ -74,6 +74,16 @@ CryptoButler uses `dotenv` for Env Var management. Copy the `.env.example` file 
 - `INFO_UPDATE_INTERVAL` - The milliseconds between querying CMC for all market data.
 - `POSTGRESQL_*` - Your PostgreSQL config.
 
+### Migrations
+
+CryptoButler uses Migrations to make sure Database Integrity is maintained. Before developing with CryptoButler, you'll want to make sure you run the migrations via the following command:
+
+```
+npm run migrate
+```
+
+Additionally, this command should be run after every deployment to make sure your Database is up-to-date.
+
 ## Donations
 
 NANO: xrb_1oyed1fzw688ahrg8yy73tya5fnj7xqigttkwmdh36edk5hfknbd6uu548h8

@@ -9,26 +9,21 @@ const models = require('./bags/models'); // Registers Models before initialising
 console.log('Starting...');
 
 sequelize.authenticate().then(() => {
-    return models.Crypto.sync({
-        force: true,
-    });
-}).then(() => {
-    return models.Server.sync({
-        force: true,
-    });
+    return sequelize.sync();
 }).then(() => {
     return ticker.fetch();
 }).then(() => {
-    return ticker.update();
-}).then(() => {
     return discordEvents.register();
 }).then(() => {
+    console.log('Ready!');
+
     discordEvents.status('Cryptocurrencies');
+
+    // Updates all the Prices initially.
+    ticker.update();
 
     // Register any on-going Jobs.
     jobs.register();
-
-    console.log('Ready!');
 }).catch(e => {
     console.error(e);
     exit();

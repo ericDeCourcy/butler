@@ -9,6 +9,10 @@ const Server = sequelize.define('servers', {
     name: {
         type: STRING,
     },
+    prefix: {
+        type: STRING,
+        defaultValue: '!butler ',
+    },
 });
 
 module.exports = Server;
