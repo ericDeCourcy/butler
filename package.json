@@ -8,7 +8,11 @@
         "discord.js": "^11.3.2",
         "dotenv": "^4.0.0",
         "erlpack": "github:discordapp/erlpack",
+        "performance-now": "^2.1.0",
+        "pg": "^7.4.3",
+        "pg-hstore": "^2.3.2",
         "request": "^2.87.0",
+        "sequelize": "^4.37.10",
         "uws": "^10.148.0"
     }
 }

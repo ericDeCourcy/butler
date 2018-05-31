@@ -23,6 +23,8 @@ Use the `price` command to fetch stats from CoinMarketCap.
 
 ### `convert`
 
+**Temporarily removed.**
+
 Converts `to` in to `from`. Supports FIAT currencies.
 
 ```
@@ -51,6 +53,25 @@ Prints out Help & Usage text for the Butler. E.g.
 ```
 !butler help
 ```
+
+## Development
+
+### Requirements
+
+- PostgreSQL
+- NodeJS (8+)
+
+### Environment Variables
+
+CryptoButler uses `dotenv` for Env Var management. Copy the `.env.example` file to `.env` and use the guide below to fill out the variables:
+
+- `DISCORD_TOKEN` - Your Discord Bot Token, found [here](https://discordapp.com/developers/applications/me).
+- `DISCORDBOTS_TOKEN` [Optional] - Your DiscordBots.org API Key, used to inform DiscordBots of the Server Count.
+- `ETHPLORER_TOKEN` - Your Ethplorer.io API Key. This can be left as `freekey`.
+- `COMMAND_PREFIX` - The prefix that all Commands must be prefixed with.
+- `CRYPTO_UPDATE_INTERVAL` - The milliseconds between querying CMC for new Cryptocurrencies.
+- `INFO_UPDATE_INTERVAL` - The milliseconds between querying CMC for all market data.
+- `POSTGRESQL_*` - Your PostgreSQL config.
 
 ## Donations
 
