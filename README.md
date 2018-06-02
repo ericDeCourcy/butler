@@ -47,6 +47,14 @@ Returns the balance of the given Wallet. Currently supported currencies:
 !butler balance token 0x57d90b64a1a57749b0f932f1a3395792e12e7055
 ```
 
+### `ping`
+
+Returns the latency between Discord and the Bot.
+
+```
+!butler ping
+```
+
 ### `help`
 
 Prints out Help & Usage text for the Butler. E.g.
