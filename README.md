@@ -47,6 +47,19 @@ Returns the balance of the given Wallet. Currently supported currencies:
 !butler balance token 0x57d90b64a1a57749b0f932f1a3395792e12e7055
 ```
 
+### `top`
+
+Returns the top `gainers`/`losers` for the given period. Valid periods:
+
+- `1h`
+- `24h`
+- `7d`
+
+```
+!butler top gainers 1h
+!butler top losers 7d
+```
+
 ### `ping`
 
 Returns the latency between Discord and the Bot.

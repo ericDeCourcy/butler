@@ -23,6 +23,25 @@ class Ticker {
         this.updating = false;
 
         /**
+         * All of the Gainers/Losers in the current period.
+         *
+         * @type {Object}
+         */
+        this.charts = {
+            lastUpdated: null,
+            gainers: {
+                '1h': [],
+                '24h': [],
+                '7d': [],
+            },
+            losers: {
+                '1h': [],
+                '24h': [],
+                '7d': [],
+            },
+        };
+
+        /**
          * Map of CMC IDs by Symbol.
          *
          * @type {Object}
@@ -55,6 +74,7 @@ class Ticker {
             this.updating = true;
 
             const updates = [];
+            const sort = [];
             const max = 100; // Shouldn't have over 100 pages (10,000 Cryptos) for a few years, best to use it as a limit.
             let pages = 1;
             let count = 0;
@@ -74,6 +94,14 @@ class Ticker {
                         const data = page[ids[c]];
                         const isBtc = data.id === 1;
                         const quote = data.quotes[isBtc ? 'USD' : 'BTC'];
+
+                        // Add the Crypto to the Charts Sort queue.
+                        sort.push([
+                            ids[c],
+                            quote.percent_change_1h,
+                            quote.percent_change_24h,
+                            quote.percent_change_7d,
+                        ]);
 
                         updates.push(Crypto.update({
                             rank: data.rank,
@@ -101,6 +129,8 @@ class Ticker {
                             fetch(start + 100);
                         }
                     } else {
+                        this.sortCharts(sort);
+
                         Promise.all(updates).then(() => {
                             const diff = ((now() - startTime) / 1000).toFixed(2);
                             console.log(`Fetched ${count} (${pages} pages) in ${diff}s`);
@@ -167,6 +197,36 @@ class Ticker {
                 });
             });
         });
+    }
+
+    /**
+     * Sorts the Charts for Gainers/Losers.
+     *
+     * @param {Array} data
+     */
+    sortCharts(data) {
+        const charts = {
+            lastUpdated: Date.now(),
+        };
+        const types = ['gainers', 'losers'];
+        const periods = ['1h', '24h', '7d'];
+        const totalTypes = types.length;
+        const totalPeriods = periods.length;
+
+        // Duplicate the data for each type/period.
+        // TODO: Maybe look in to optimising this?
+        for (let t = 0; t < totalTypes; t++) {
+            charts[types[t]] = {};
+
+            for (let p = 1; p <= totalPeriods; p++) {
+                let sorted = data.slice(0);
+                sorted.sort((a, b) => t ? a[p] - b[p] : b[p] - a[p]);
+                sorted = sorted.slice(0, 10);
+                charts[types[t]][periods[p - 1]] = sorted.map(item => parseInt(item[0]));
+            }
+        }
+
+        this.charts = charts;
     }
 
     /**

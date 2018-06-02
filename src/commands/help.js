@@ -7,6 +7,7 @@ class Help extends Command {
         const content = `\`${prefix} price [id]\` - Fetches data from CoinMarketCap for the given ID.
 \`${prefix} convert [amount] [from] [to]\` - Converts a given amount of \`from\` to currency \`to\`.
 \`${prefix} balance [ticker] [address]\` - Returns the balance of the given Wallet. Supports \`eth\`, \`btc\` and \`tokens\` (ERC-20).
+\`${prefix} top [type] [period]\` - Returns the top Cryptos by type for the given period. E.g. \`!butler top gainers 24h\`.
 \`${prefix} ping\` - Returns the latency between Discord and the Bot.
 \`${prefix} help\` - I'll give you 10 guesses.
 
