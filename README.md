@@ -82,6 +82,14 @@ If you want to end your prefix with a blank space (Such as the default `!butler 
 !butler prefix !butler[space]
 ```
 
+### `stats`
+
+Print out statistical information about the current Server.
+
+```
+!butler stats
+```
+
 ### `ping`
 
 Returns the latency between Discord and the Bot.
