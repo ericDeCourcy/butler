@@ -4,12 +4,21 @@ const { Crypto } = require('./../bags/models');
 
 class Convert extends Command {
 
+    /**
+     * Initializes the new Command Instance.
+     */
     constructor() {
         super();
 
         this.minParams = 3;
     }
 
+    /**
+     * Executes the Command logic.
+     *
+     * @param {Message} msg
+     * @param {Array} [params]
+     */
     execute(msg, params = []) {
         const amount = parseFloat(params[0]);
         const data = {
@@ -43,7 +52,7 @@ class Convert extends Command {
             });
         };
 
-        msg.channel.send('Converting...').then(message => {
+        msg.channel.send(this.prepare('Converting...')).then(message => {
             sentMessage = message;
 
             return fetchCurrency('from');
@@ -58,8 +67,10 @@ class Convert extends Command {
             };
             const converted = amount * multi;
 
-            sentMessage.edit(`${amount} ${symbols.from} = ${converted} ${symbols.to}`);
+            sentMessage.edit(this.prepare(`${amount} ${symbols.from} = ${converted} ${symbols.to}`));
         }).catch(msg => {
+            msg = this.prepare(msg);
+
             if (sentMessage !== null) {
                 sentMessage.edit(msg);
             } else {

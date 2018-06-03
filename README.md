@@ -11,6 +11,8 @@ Feel free to [vote for the Bot on DiscordBots](https://discordbots.org/bot/39518
 
 Need help? Found an issue? [Join us on Discord.](https://discord.gg/2VBKbEH)
 
+This Bot adheres to the [Discord Bot Best Practises](https://github.com/meew0/discord-bot-best-practices).
+
 ## Commands
 
 Commands must be prefixed with `!butler`. See below for examples.

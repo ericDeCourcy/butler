@@ -5,6 +5,9 @@ const Ethplorer = require('./../services/ethplorer');
 
 class Balance extends Command {
 
+    /**
+     * Initializes the new Command Instance.
+     */
     constructor() {
         super();
 
@@ -22,12 +25,18 @@ class Balance extends Command {
         ];
     }
 
+    /**
+     * Executes the Command logic.
+     *
+     * @param {Message} msg
+     * @param {Array} [params]
+     */
     execute(msg, params = []) {
         const ticker = params[0].toLowerCase();
         const address = params[1];
         let sentMessage = null;
 
-        msg.channel.send('Checking...').then(message => {
+        msg.channel.send(this.prepare('Checking...')).then(message => {
             sentMessage = message;
 
             if (this.tickers.indexOf(ticker) === -1) {
@@ -126,7 +135,7 @@ class Balance extends Command {
                 fields: data.fields,
             }));
         }).catch(msg => {
-            const text = msg ? msg : `Could not fetch balance for "${ticker}@${address}".`;
+            const text = this.prepare(msg ? msg : `Could not fetch balance for "${ticker}@${address}".`);
 
             if (sentMessage !== null) {
                 sentMessage.edit(text);

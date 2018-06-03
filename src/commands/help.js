@@ -3,6 +3,12 @@ const { prefix: getPrefix } = require('./../servers');
 
 class Help extends Command {
 
+    /**
+     * Executes the Command logic.
+     *
+     * @param {Message} msg
+     * @param {Array} [params]
+     */
     execute(msg, params = []) {
         const prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
         const content = `\`${prefix}price [id]\` - Fetches data from CoinMarketCap for the given ID.
@@ -28,7 +34,7 @@ https://discord.gg/2VBKbEH
 **Vote for CryptoButler:** https://discordbots.org/bot/395189067719114752/vote
 **Source Code:** https://github.com/oyed/cryptobutler`;
 
-        msg.channel.send(content);
+        msg.channel.send(this.prepare(content));
     }
 
 }

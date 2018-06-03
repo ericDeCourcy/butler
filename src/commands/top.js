@@ -5,12 +5,21 @@ const { Crypto } = require('./../bags/models');
 
 class Top extends Command {
 
+    /**
+     * Initializes the new Command Instance.
+     */
     constructor() {
         super();
 
         this.minParams = 2;
     }
 
+    /**
+     * Executes the Command logic.
+     *
+     * @param {Message} msg
+     * @param {Array} [params]
+     */
     execute(msg, params = []) {
         const allowed = {
             types: ['gainers', 'losers'],
@@ -21,7 +30,7 @@ class Top extends Command {
         let sentMessage = null;
         let results = [];
 
-        msg.channel.send('Fetching...').then(message => {
+        msg.channel.send(this.prepare('Fetching...')).then(message => {
             sentMessage = message;
 
             if (allowed.types.indexOf(type) === -1) {
@@ -89,6 +98,8 @@ class Top extends Command {
                 fields,
             }));
         }).catch(msg => {
+            msg = this.prepare(msg);
+
             if (sentMessage !== null) {
                 sentMessage.edit(msg);
             } else {
