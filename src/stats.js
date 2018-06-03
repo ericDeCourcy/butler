@@ -58,7 +58,7 @@ const save = () => {
                         },
                     });
                 } else {
-                    op = Stat.insert({
+                    op = Stat.create({
                         type: types[t],
                         server: servers[s],
                         value: val,
