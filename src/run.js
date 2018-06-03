@@ -4,12 +4,15 @@ const { discord, sequelize } = require('./client');
 const discordEvents = require('./discord');
 const ticker = require('./ticker');
 const jobs = require('./jobs');
+const servers = require('./servers');
 const models = require('./bags/models'); // Registers Models before initialising.
 
 console.log('Starting...');
 
 sequelize.authenticate().then(() => {
     return sequelize.sync();
+}).then(() => {
+    return servers.fetch();
 }).then(() => {
     return ticker.fetch();
 }).then(() => {

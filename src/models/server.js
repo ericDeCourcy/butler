@@ -11,7 +11,7 @@ const Server = sequelize.define('servers', {
     },
     prefix: {
         type: STRING,
-        defaultValue: '!butler ',
+        defaultValue: process.env.COMMAND_PREFIX,
     },
 });
 

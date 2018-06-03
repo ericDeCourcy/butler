@@ -60,6 +60,26 @@ Returns the top `gainers`/`losers` for the given period. Valid periods:
 !butler top losers 7d
 ```
 
+### `prefix`
+
+Changes the Bot Prefix for this Server.
+
+**Note:** Only the Server Owner can do this.
+
+For example, using the following:
+
+```
+!butler prefix .
+```
+
+Would mean that instead of `!butler price btc` you would use `.price btc`.
+
+If you want to end your prefix with a blank space (Such as the default `!butler ` prefix), replace the space with `[space]`. E.g.:
+
+```
+!butler prefix !butler[space]
+```
+
 ### `ping`
 
 Returns the latency between Discord and the Bot.

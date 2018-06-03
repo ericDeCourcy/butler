@@ -1,14 +1,16 @@
 const commands = require('./bags/commands');
+const { prefix: getPrefix } = require('./servers');
 
 const parse = msg => {
-    const prefix = process.env.COMMAND_PREFIX;
+    const prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
+
     let { content } = msg;
 
     if (content.indexOf(prefix) !== 0) {
         return false;
     }
 
-    content = content.substr(prefix.length + 1);
+    content = content.substr(prefix.length);
     const params = content.split(' ');
     const cmd = params[0].toLowerCase();
     params.shift();
