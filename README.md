@@ -123,6 +123,7 @@ CryptoButler uses `dotenv` for Env Var management. Copy the `.env.example` file 
 - `COMMAND_PREFIX` - The prefix that all Commands must be prefixed with.
 - `CRYPTO_UPDATE_INTERVAL` - The milliseconds between querying CMC for new Cryptocurrencies.
 - `INFO_UPDATE_INTERVAL` - The milliseconds between querying CMC for all market data.
+- `STATS_PERSIST_INTERVAL` - The milliseconds between persisting the collected Statistical data.
 - `POSTGRESQL_*` - Your PostgreSQL config.
 
 ### Migrations
@@ -134,6 +135,14 @@ npm run migrate
 ```
 
 Additionally, this command should be run after every deployment to make sure your Database is up-to-date.
+
+### Seeders
+
+If it is your first time setting up CryptoButler, you'll need to run the Database Seeders to populate the Database with the initial data.
+
+```
+npm run seed
+```
 
 ## Donations
 

@@ -1,6 +1,7 @@
 const commands = require('./bags/commands');
 const { discord } = require('./client');
 const { prefix: getPrefix } = require('./servers');
+const { log } = require('./stats');
 
 const supported = Object.keys(commands);
 
@@ -42,6 +43,13 @@ const parse = msg => {
         params.length < commands[cmd].minParams
     ) {
         return false;
+    }
+
+    // Log the Statistics.
+    log('commands_executed', 'all');
+
+    if (msg.guild !== null) {
+        log('commands_executed', msg.guild.id);
     }
 
     // Now that all checks have passed - execute the Command!

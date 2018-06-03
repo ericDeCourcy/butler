@@ -1,8 +1,10 @@
 const ticker = require('./ticker');
+const stats = require('./stats');
 
 const intervals = {
     listingUpdate: null,
     infoUpdate: null,
+    statsPersist: null,
 };
 
 const keys = Object.keys(intervals);
@@ -18,6 +20,11 @@ const register = () => {
     intervals.infoUpdate = setInterval(() => {
         ticker.update();
     }, parseInt(process.env.INFO_UPDATE_INTERVAL));
+
+    // Regular information update.
+    intervals.statsPersist = setInterval(() => {
+        stats.save();
+    }, parseInt(process.env.STATS_PERSIST_INTERVAL));
 };
 
 const kill = () => {

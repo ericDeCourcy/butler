@@ -3,6 +3,7 @@
     "scripts": {
         "start": "node ./src/run.js",
         "migrate": "sequelize db:migrate",
+        "seed": "sequelize db:seed:all",
         "drop": "sequelize db:migrate:undo:all"
     },
     "dependencies": {
