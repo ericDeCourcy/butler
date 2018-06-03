@@ -90,9 +90,17 @@ Returns the latency between Discord and the Bot.
 !butler ping
 ```
 
+### `info`
+
+Prints out Info text for the Bot. E.g.
+
+```
+!butler info
+```
+
 ### `help`
 
-Prints out Help & Usage text for the Butler. E.g.
+Prints out Usage text for the Butler. E.g.
 
 ```
 !butler help

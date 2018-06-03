@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const { discord, sequelize } = require('./client');
+const { login, discord, sequelize } = require('./client');
 const discordEvents = require('./discord');
 const ticker = require('./ticker');
 const jobs = require('./jobs');
@@ -16,11 +16,11 @@ sequelize.authenticate().then(() => {
 }).then(() => {
     return ticker.fetch();
 }).then(() => {
+    return login();
+}).then(() => {
     return discordEvents.register();
 }).then(() => {
     console.log('Ready!');
-
-    discordEvents.status('Cryptocurrencies');
 
     // Updates all the Prices initially.
     ticker.update();

@@ -4,11 +4,15 @@ const Dbl = require('dblapi.js');
 
 // Discord.
 const discord = new Discord.Client();
-discord.login(process.env.DISCORD_TOKEN).then(() => {
-    discord.user.setActivity('starting up', {
-        type: 'WATCHING',
+const login = () => {
+    console.log('Authenticating with Discord...');
+
+    return discord.login(process.env.DISCORD_TOKEN).then(() => {
+        discord.user.setActivity('Cryptocurrencies', {
+            type: 'WATCHING',
+        });
     });
-});
+};
 
 // Discord Bot List.
 let dbl = null;
@@ -42,6 +46,7 @@ const sequelize = new Sequelize(POSTGRESQL_DB, POSTGRESQL_USER, POSTGRESQL_PASSW
 
 module.exports = {
     discord,
+    login,
     dbl,
     sequelize,
 };
