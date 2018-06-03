@@ -19,10 +19,9 @@ class Price extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
+     * @param {Object} config
      */
-    execute(msg, params = []) {
+    execute({ msg, params }) {
         const from = params[0].toLowerCase();
         let currency = null;
         let sentMessage = null;

@@ -12,7 +12,8 @@ const parse = msg => {
     }
 
     // Fetch the Prefix used for this Server (May be custom).
-    let prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
+    const isDm = msg.guild === null;
+    let prefix = getPrefix(isDm ? null : msg.guild.id);
     let { content } = msg;
 
     // Allow executing commands via mentioning the Bot instead of the prefix.
@@ -48,12 +49,17 @@ const parse = msg => {
     // Log the Statistics.
     log('commands_executed', 'all');
 
-    if (msg.guild !== null) {
+    if (!isDm) {
         log('commands_executed', msg.guild.id);
     }
 
     // Now that all checks have passed - execute the Command!
-    commands[cmd].execute(msg, params, commands);
+    commands[cmd].execute({
+        msg,
+        params,
+        isDm,
+        commands,
+    });
 };
 
 module.exports = {

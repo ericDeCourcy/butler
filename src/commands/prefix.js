@@ -17,10 +17,9 @@ class Prefix extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
+     * @param {Object} config
      */
-    execute(msg, params = []) {
+    execute({ msg, params }) {
         const { member } = msg;
 
         if (parseInt(member.guild.ownerID) !== parseInt(member.user.id)) {

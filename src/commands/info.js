@@ -14,10 +14,9 @@ class Info extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
+     * @param {Object} config
      */
-    execute(msg, params = []) {
+    execute({ msg }) {
         msg.channel.send(this.prepare(`**CryptoButler**
 
 A general purpose, open-source Cryptocurrency Discord Bot.

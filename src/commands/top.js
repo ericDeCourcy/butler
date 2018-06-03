@@ -19,10 +19,9 @@ class Top extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
+     * @param {Object} config
      */
-    execute(msg, params = []) {
+    execute({ msg, params }) {
         const allowed = {
             types: ['gainers', 'losers'],
             periods: ['1h', '24h', '7d'],

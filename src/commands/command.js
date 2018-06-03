@@ -29,11 +29,9 @@ class Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
-     * @param {Object} [commands] All available command instances.
+     * @param {Object} config
      */
-    execute(msg, params = [], commands = {}) {
+    execute(config) {
         //
     }
 

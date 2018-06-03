@@ -14,10 +14,9 @@ class Ping extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
+     * @param {Object} config
      */
-    execute(msg, params = []) {
+    execute({ msg }) {
         const diff = Date.now() - msg.createdTimestamp;
 
         msg.channel.send(this.prepare(`Pong! I heard you in ${diff / 1000}s.`));

@@ -15,11 +15,9 @@ class Help extends Command {
     /**
      * Executes the Command logic.
      *
-     * @param {Message} msg
-     * @param {Array} [params]
-     * @param {Object} [commands]
+     * @param {Object} config
      */
-    execute(msg, params = [], commands = {}) {
+    execute({ msg, commands }) {
         const prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
         const keys = Object.keys(commands);
         const total = keys.length;
