@@ -10,6 +10,8 @@ class Convert extends Command {
     constructor() {
         super();
 
+        this.params = ['amount', 'from', 'to'];
+        this.description = 'Converts a given amount of `from` to currency `to`.';
         this.minParams = 3;
     }
 

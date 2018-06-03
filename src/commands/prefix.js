@@ -9,6 +9,8 @@ class Prefix extends Command {
     constructor() {
         super();
 
+        this.params = ['prefix'];
+        this.description = 'Allows you to replace the default prefix.';
         this.minParams = 1;
     }
 

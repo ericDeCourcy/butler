@@ -11,6 +11,8 @@ class Price extends Command {
     constructor() {
         super();
 
+        this.params = ['id'];
+        this.description = 'Fetches data from CoinMarketCap for the given ID.';
         this.minParams = 1;
     }
 

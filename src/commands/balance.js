@@ -11,6 +11,8 @@ class Balance extends Command {
     constructor() {
         super();
 
+        this.params = ['ticker', 'address'];
+        this.description = 'Returns the balance of the given Wallet. Supports `eth`, `btc` and `tokens` (ERC-20).';
         this.minParams = 2;
 
         /**

@@ -45,7 +45,7 @@ const parse = msg => {
     }
 
     // Now that all checks have passed - execute the Command!
-    commands[cmd].execute(msg, params);
+    commands[cmd].execute(msg, params, commands);
 };
 
 module.exports = {

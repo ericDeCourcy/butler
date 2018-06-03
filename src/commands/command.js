@@ -4,6 +4,25 @@ class Command {
      * Initializes the new Command Instance.
      */
     constructor() {
+        /**
+         * Names parameters for this Command, used in the Help Text.
+         *
+         * @type {Array}
+         */
+        this.params = [];
+
+        /**
+         * The Help Text for this Command.
+         *
+         * @type {String}
+         */
+        this.description = '';
+
+        /**
+         * The minimum amount of parameters required to run this Command.
+         *
+         * @type {Number}
+         */
         this.minParams = 0;
     }
 
@@ -12,8 +31,9 @@ class Command {
      *
      * @param {Message} msg
      * @param {Array} [params]
+     * @param {Object} [commands] All available command instances.
      */
-    execute(msg, params = []) {
+    execute(msg, params = [], commands = {}) {
         //
     }
 

@@ -11,6 +11,8 @@ class Top extends Command {
     constructor() {
         super();
 
+        this.params = ['type', 'period'];
+        this.description = 'Returns the top Cryptos by type for the given period.';
         this.minParams = 2;
     }
 

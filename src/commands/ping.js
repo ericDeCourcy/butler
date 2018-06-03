@@ -3,6 +3,15 @@ const Command = require('./command');
 class Ping extends Command {
 
     /**
+     * Initializes the new Command Instance.
+     */
+    constructor() {
+        super();
+
+        this.description = 'Returns the latency between Discord and the Bot.';
+    }
+
+    /**
      * Executes the Command logic.
      *
      * @param {Message} msg
