@@ -3,7 +3,9 @@ const Discord = require('discord.js');
 const Dbl = require('dblapi.js');
 
 // Discord.
-const discord = new Discord.Client();
+const discord = new Discord.Client({
+    disableEveryone: true,
+});
 const login = () => {
     console.log('Authenticating with Discord...');
 
