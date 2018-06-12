@@ -5,6 +5,25 @@ const Dbl = require('dblapi.js');
 // Discord.
 const discord = new Discord.Client({
     disableEveryone: true,
+    disabledEvents: [
+        'GUILD_CREATE',
+        'GUILD_DELETE',
+        'GUILD_ROLE_CREATE',
+        'GUILD_ROLE_DELETE',
+        'GUILD_ROLE_UPDATE',
+        'GUILD_BAN_ADD',
+        'GUILD_BAN_REMOVE',
+        'CHANNEL_CREATE',
+        'CHANNEL_DELETE',
+        'CHANNEL_UPDATE',
+        'CHANNEL_PINS_UPDATE',
+        'USER_UPDATE',
+        'USER_NOTE_UPDATE',
+        'USER_SETTINGS_UPDATE',
+        'VOICE_STATE_UPDATE',
+        'TYPING_START',
+        'VOICE_SERVER_UPDATE',
+    ],
 });
 const login = () => {
     console.log('Authenticating with Discord...');
