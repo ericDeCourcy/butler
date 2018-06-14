@@ -11,9 +11,17 @@ class Top extends Command {
     constructor() {
         super();
 
-        this.params = ['type', 'period'];
-        this.description = 'Returns the top Cryptos by type for the given period.';
-        this.minParams = 2;
+        this.params = {
+            type: {
+                required: true,
+                range: ['gainers', 'losers'],
+            },
+            period: {
+                default: '24h',
+                range: ['1h', '24h', '7d'],
+            },
+        };
+        this.description = 'The top perfomers by type for the given period.';
     }
 
     /**
@@ -21,26 +29,13 @@ class Top extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
-        const allowed = {
-            types: ['gainers', 'losers'],
-            periods: ['1h', '24h', '7d'],
-        };
-        const type = params[0];
-        const period = params[1];
+    execute({ msg, params, prepare }) {
+        const { type, period } = params;
         let sentMessage = null;
         let results = [];
 
-        msg.channel.send(this.prepare('Fetching...')).then(message => {
+        msg.channel.send(prepare('Fetching...')).then(message => {
             sentMessage = message;
-
-            if (allowed.types.indexOf(type) === -1) {
-                return Promise.reject(`Unknown type "${type}". Allowed options: ${allowed.types.join(', ')}`);
-            }
-
-            if (allowed.periods.indexOf(period) === -1) {
-                return Promise.reject(`Unknown period "${period}". Allowed options: ${allowed.periods.join(', ')}`);
-            }
 
             return Ticker.charts[type][period];
         }).then(ids => {
@@ -99,7 +94,7 @@ class Top extends Command {
                 fields,
             }));
         }).catch(msg => {
-            msg = this.prepare(msg);
+            msg = prepare(msg);
 
             if (sentMessage !== null) {
                 sentMessage.edit(msg);

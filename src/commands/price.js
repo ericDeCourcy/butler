@@ -11,9 +11,12 @@ class Price extends Command {
     constructor() {
         super();
 
-        this.params = ['id'];
-        this.description = 'Fetches data from CoinMarketCap for the given ID.';
-        this.minParams = 1;
+        this.params = {
+            id: {
+                required: true,
+            },
+        };
+        this.description = 'Shows CoinMarketCap data for the given Cryptocurrency.';
     }
 
     /**
@@ -21,12 +24,12 @@ class Price extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
-        const from = params[0].toLowerCase();
+    execute({ msg, params, prepare }) {
+        const from = params.id.toLowerCase();
         let currency = null;
         let sentMessage = null;
 
-        msg.channel.send(this.prepare('Fetching...')).then(message => {
+        msg.channel.send(prepare('Fetching...')).then(message => {
             sentMessage = message;
             currency = ticker.getCurrencyId(from);
 
@@ -42,7 +45,7 @@ class Price extends Command {
 
             const now = Date.now();
             const diff = Math.floor((now - data.checkedAt.getTime()) / 1000);
-            let color = 13369344; // Red.
+            let color = 0xCC0000; // Red.
             let diffStr = `${diff}s`;
 
             if (diff > 60) {
@@ -51,7 +54,7 @@ class Price extends Command {
             }
 
             if (data.change_1h > 0) {
-                color = 2728745; // Green.
+                color = 0x29A329; // Green.
             }
 
             sentMessage.edit(new RichEmbed({
@@ -95,7 +98,7 @@ class Price extends Command {
                 ],
             }));
         }).catch(() => {
-            const text = this.prepare(`Could not fetch prices for "${from}".`);
+            const text = prepare(`Could not fetch prices for "${from}".`);
 
             if (sentMessage !== null) {
                 sentMessage.edit(text);

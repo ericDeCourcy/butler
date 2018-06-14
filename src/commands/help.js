@@ -9,7 +9,7 @@ class Help extends Command {
     constructor() {
         super();
 
-        this.description = 'Prints Help text for all available Commands.';
+        this.description = 'Shows all available Commands.';
     }
 
     /**
@@ -17,7 +17,7 @@ class Help extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, commands }) {
+    execute({ msg, prepare, commands }) {
         const prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
         const keys = Object.keys(commands);
         const total = keys.length;
@@ -25,18 +25,32 @@ class Help extends Command {
 
         for (let c = 0; c < total; c++) {
             const cmd = commands[keys[c]];
-            const totalParams = cmd.params.length;
+
+            if (!cmd.enabled) {
+                continue;
+            }
+
+            const params = cmd.params;
+            const paramKeys = Object.keys(params);
+            const totalParams = paramKeys.length;
             let paramsStr = '';
 
             for (let p = 0; p < totalParams; p++) {
-                paramsStr += ` [${cmd.params[p]}]`;
+                const param = params[paramKeys[p]];
+                let range = `[${paramKeys[p]}]`;
+
+                if (param.range) {
+                    range = param.range.join('/');
+                }
+
+                paramsStr += ` ${range}`;
             }
 
             content += `\`${prefix}${keys[c]}${paramsStr}\` - ${cmd.description}
 `;
         }
 
-        msg.channel.send(this.prepare(content));
+        msg.channel.send(prepare(content));
     }
 
 }

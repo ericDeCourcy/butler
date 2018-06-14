@@ -8,7 +8,7 @@ class Info extends Command {
     constructor() {
         super();
 
-        this.description = 'Prints information on the Bot as well as support links.';
+        this.description = 'Prints general information on the Bot and where to find Support.';
     }
 
     /**
@@ -16,10 +16,8 @@ class Info extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg }) {
-        msg.channel.send(this.prepare(`**CryptoButler**
-
-A general purpose, open-source Cryptocurrency Discord Bot.
+    execute({ msg, prepare }) {
+        msg.channel.send(prepare(`A general purpose, open-source Cryptocurrency Discord Bot.
 
 **GitHub:** https://github.com/oyed/cryptobutler
 **Support:** https://discord.gg/2VBKbEH

@@ -5,11 +5,18 @@ class Command {
      */
     constructor() {
         /**
-         * Names parameters for this Command, used in the Help Text.
+         * Whether the command is enabled for use or not.
+         *
+         * @type {Boolean}
+         */
+        this.enabled = true;
+
+        /**
+         * Names parameters for this Command.
          *
          * @type {Array}
          */
-        this.params = [];
+        this.params = {};
 
         /**
          * The Help Text for this Command.
@@ -17,13 +24,6 @@ class Command {
          * @type {String}
          */
         this.description = '';
-
-        /**
-         * The minimum amount of parameters required to run this Command.
-         *
-         * @type {Number}
-         */
-        this.minParams = 0;
     }
 
     /**
@@ -33,19 +33,6 @@ class Command {
      */
     execute(config) {
         //
-    }
-
-    /**
-     * Prepares a text-based message to send to Discord.
-     * Adds a zero-width space to the beginning of the message so that it isn't
-     * picked up by other Bots.
-     *
-     * @param {String} msg
-     *
-     * @return {String}
-     */
-    prepare(msg) {
-        return `\u200B${msg}`;
     }
 
 }

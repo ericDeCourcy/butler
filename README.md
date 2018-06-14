@@ -62,6 +62,54 @@ Returns the top `gainers`/`losers` for the given period. Valid periods:
 !butler top losers 7d
 ```
 
+### `poll`
+
+Creates a new Poll for people to vote on. Has very configurable options.
+
+Specifying a Poll that has no options will add the 👍 and 👎 reactions for people to use:
+
+```
+!butler poll Is the sky blue?
+```
+
+You can specify up to 10 options on new lines:
+
+```
+!butler poll Which is your favourite animal?
+Dog
+Cat
+Mouse
+```
+
+The above will give each option a letter of the alphabet, e.g. `A`, `B` and `C`, for the reactions. If you want to specify your own emojis for each option, you can do so:
+
+```
+!butler poll Which is your favourite animal?
+🐶) Dog
+🐱) Cat
+🐭) Mouse
+```
+
+You can also negate the text altogether and use just emojis:
+
+```
+!butler poll Which is your favourite animal?
+🐶
+🐱
+🐭
+```
+
+It is also possible to mix-and-max these options:
+
+```
+!butler poll Which is your favourite animal?
+Dog
+🐱) Cat
+🐭
+```
+
+**Note:** Whilst you can use custom emojis, please only use custom emojis from the server you're posting the poll in, otherwise it's unlikely the Bot will find them.
+
 ### `prefix`
 
 Changes the Bot Prefix for this Server.

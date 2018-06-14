@@ -20,13 +20,6 @@ const register = () => {
     return Promise.all(jobs);
 };
 
-const status = status => {
-    discord.user.setActivity(status, {
-        type: 'WATCHING',
-    });
-};
-
 module.exports = {
     register,
-    status,
 };

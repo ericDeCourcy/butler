@@ -22,11 +22,11 @@ sequelize.authenticate().then(() => {
 }).then(() => {
     console.log('Ready!');
 
-    // Updates all the Prices initially.
-    ticker.update();
-
     // Register any on-going Jobs.
     jobs.register();
+
+    // Updates all the Prices initially.
+    ticker.update();
 }).catch(e => {
     console.error(e);
     exit();

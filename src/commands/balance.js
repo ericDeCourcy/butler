@@ -11,20 +11,16 @@ class Balance extends Command {
     constructor() {
         super();
 
-        this.params = ['ticker', 'address'];
-        this.description = 'Returns the balance of the given Wallet. Supports `eth`, `btc` and `tokens` (ERC-20).';
-        this.minParams = 2;
-
-        /**
-         * The list of supported Wallets.
-         *
-         * @type {Array}
-         */
-        this.tickers = [
-            'btc',
-            'eth',
-            'tokens',
-        ];
+        this.params = {
+            ticker: {
+                required: true,
+                range: ['btc', 'eth', 'tokens'],
+            },
+            address: {
+                required: true,
+            },
+        };
+        this.description = 'Returns the balance of the given Wallet.';
     }
 
     /**
@@ -32,17 +28,13 @@ class Balance extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
-        const ticker = params[0].toLowerCase();
-        const address = params[1];
+    execute({ msg, params, prepare }) {
+        const { address } = params;
+        const ticker = params.ticker.toLowerCase();
         let sentMessage = null;
 
-        msg.channel.send(this.prepare('Checking...')).then(message => {
+        msg.channel.send(prepare('Checking...')).then(message => {
             sentMessage = message;
-
-            if (this.tickers.indexOf(ticker) === -1) {
-                return Promise.reject(`Wallet type "${ticker}" isn't supported.`);
-            }
 
             switch (ticker) {
                 case 'btc': {
@@ -136,7 +128,7 @@ class Balance extends Command {
                 fields: data.fields,
             }));
         }).catch(msg => {
-            const text = this.prepare(msg ? msg : `Could not fetch balance for "${ticker}@${address}".`);
+            const text = prepare(msg ? msg : `Could not fetch balance for "${ticker}@${address}".`);
 
             if (sentMessage !== null) {
                 sentMessage.edit(text);

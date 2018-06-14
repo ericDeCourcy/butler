@@ -1,5 +1,6 @@
 const now = require('performance-now');
 const { listings, ticker } = require('./services/cmc');
+const { discord } = require('./client');
 const Crypto = require('./models/crypto');
 
 class Ticker {
@@ -193,6 +194,14 @@ class Ticker {
                     this.fetching = false;
                     const diff = ((now() - startTime) / 1000).toFixed(2);
                     console.log(`Fetched ${totalCryptos} (${newlyCreated} new) in ${diff}s`);
+
+                    if (discord.user !== null) {
+                        discord.user.setActivity(`${totalCryptos} Cryptocurrencies`, {
+                            type: 'WATCHING',
+                        }).then(() => resolve());
+                        return;
+                    }
+
                     resolve();
                 });
             });

@@ -9,9 +9,12 @@ class Prefix extends Command {
     constructor() {
         super();
 
-        this.params = ['prefix'];
-        this.description = 'Allows you to replace the default prefix.';
-        this.minParams = 1;
+        this.params = {
+            prefix: {
+                required: true,
+            },
+        };
+        this.description = 'Sets the command prefix for the Server.';
     }
 
     /**
@@ -26,8 +29,14 @@ class Prefix extends Command {
             return;
         }
 
+        const { prefix } = params;
+
+        if (!prefix.length) {
+            return;
+        }
+
         update(msg.guild.id, {
-            prefix: params[0],
+            prefix,
         });
     }
 

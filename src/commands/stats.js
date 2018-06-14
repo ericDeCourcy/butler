@@ -10,7 +10,7 @@ class Stats extends Command {
     constructor() {
         super();
 
-        this.description = 'Prints out statistics about the current Server.';
+        this.description = 'Statistics about the current Server.';
     }
 
     /**
@@ -18,14 +18,14 @@ class Stats extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute({ msg, params, prepare }) {
         if (msg.guild === null) {
             return;
         }
 
         let sentMessage = null;
 
-        msg.channel.send(this.prepare('Fetching...')).then(message => {
+        msg.channel.send(prepare('Fetching...')).then(message => {
             sentMessage = message;
 
             return Stat.findAll({
@@ -63,7 +63,7 @@ class Stats extends Command {
                 fields,
             }));
         }).catch(() => {
-            const text = this.prepare('Could not fetch stats for this Server.');
+            const text = prepare('Could not fetch stats for this Server.');
 
             if (sentMessage !== null) {
                 sentMessage.edit(text);

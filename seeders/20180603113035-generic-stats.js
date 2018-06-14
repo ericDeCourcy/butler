@@ -6,6 +6,11 @@ module.exports = {
                 server: 'all',
                 value: 0,
             },
+            {
+                type: 'polls',
+                server: 'all',
+                value: 0,
+            },
         ], {});
     },
     down: (queryInterface, Sequelize) => {

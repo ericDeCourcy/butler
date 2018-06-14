@@ -6,8 +6,6 @@ const Dbl = require('dblapi.js');
 const discord = new Discord.Client({
     disableEveryone: true,
     disabledEvents: [
-        'GUILD_CREATE',
-        'GUILD_DELETE',
         'GUILD_ROLE_CREATE',
         'GUILD_ROLE_DELETE',
         'GUILD_ROLE_UPDATE',
@@ -28,11 +26,7 @@ const discord = new Discord.Client({
 const login = () => {
     console.log('Authenticating with Discord...');
 
-    return discord.login(process.env.DISCORD_TOKEN).then(() => {
-        discord.user.setActivity('Cryptocurrencies', {
-            type: 'WATCHING',
-        });
-    });
+    return discord.login(process.env.DISCORD_TOKEN);
 };
 
 // Discord Bot List.

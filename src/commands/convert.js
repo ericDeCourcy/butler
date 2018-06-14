@@ -10,9 +10,18 @@ class Convert extends Command {
     constructor() {
         super();
 
-        this.params = ['amount', 'from', 'to'];
-        this.description = 'Converts a given amount of `from` to currency `to`.';
-        this.minParams = 3;
+        this.params = {
+            amount: {
+                required: true,
+            },
+            from: {
+                required: true,
+            },
+            to: {
+                required: true,
+            },
+        };
+        this.description = 'Converts between Cryptocurrencies.';
     }
 
     /**
@@ -20,17 +29,17 @@ class Convert extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
-        const amount = parseFloat(params[0]);
+    execute({ msg, params, prepare }) {
+        const amount = parseFloat(params.amount);
         const data = {
             from: {
                 id: null,
-                raw: params[1].toLowerCase(),
+                raw: params.from.toLowerCase(),
                 data: null,
             },
             to: {
                 id: null,
-                raw: params[2].toLowerCase(),
+                raw: params.to.toLowerCase(),
                 data: null,
             },
         };
@@ -53,7 +62,7 @@ class Convert extends Command {
             });
         };
 
-        msg.channel.send(this.prepare('Converting...')).then(message => {
+        msg.channel.send(prepare('Converting...')).then(message => {
             sentMessage = message;
 
             return fetchCurrency('from');
@@ -68,9 +77,9 @@ class Convert extends Command {
             };
             const converted = amount * multi;
 
-            sentMessage.edit(this.prepare(`${amount} ${symbols.from} = ${converted} ${symbols.to}`));
+            sentMessage.edit(prepare(`${amount} ${symbols.from} = ${converted} ${symbols.to}`));
         }).catch(msg => {
-            msg = this.prepare(msg);
+            msg = prepare(msg);
 
             if (sentMessage !== null) {
                 sentMessage.edit(msg);
