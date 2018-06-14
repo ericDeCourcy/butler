@@ -26,7 +26,10 @@ const discord = new Discord.Client({
 const login = () => {
     console.log('Authenticating with Discord...');
 
-    return discord.login(process.env.DISCORD_TOKEN);
+    return new Promise((resolve, reject) => {
+        discord.login(process.env.DISCORD_TOKEN);
+        discord.once('ready', () => resolve());
+    });
 };
 
 // Discord Bot List.
