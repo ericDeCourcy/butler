@@ -138,6 +138,14 @@ Print out statistical information about the current Server.
 !butler stats
 ```
 
+### `flip`
+
+Flips a coin. That's all.
+
+```
+!butler flip
+```
+
 ### `ping`
 
 Returns the latency between Discord and the Bot.
