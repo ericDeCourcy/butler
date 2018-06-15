@@ -125,6 +125,8 @@ class Poll extends Command {
 `;
         }
 
+        answerText += '\u200B';
+
         if (!printDesc) {
             answerText = '';
         }
@@ -134,6 +136,7 @@ class Poll extends Command {
             color: 0x42A5F5,
             description: answerText,
             footer: {
+                icon_url: msg.author.displayAvatarURL,
                 text: `Started by ${msg.author.username}#${msg.author.discriminator}`,
             },
         })).then(message => {
