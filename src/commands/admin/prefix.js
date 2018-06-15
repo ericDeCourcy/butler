@@ -1,5 +1,5 @@
-const Command = require('./command');
-const { update } = require('./../servers');
+const Command = require('./../command');
+const { update } = require('./../../servers');
 
 class Prefix extends Command {
 

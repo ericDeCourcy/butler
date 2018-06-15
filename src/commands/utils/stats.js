@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
-const { Stat } = require('./../bags/models');
-const Command = require('./command');
+const { Stat } = require('./../../bags/models');
+const Command = require('./../command');
 
 class Stats extends Command {
 

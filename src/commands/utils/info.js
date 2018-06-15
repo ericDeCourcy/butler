@@ -1,4 +1,4 @@
-const Command = require('./command');
+const Command = require('./../command');
 
 class Info extends Command {
 

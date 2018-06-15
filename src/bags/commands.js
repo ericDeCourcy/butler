@@ -1,15 +1,15 @@
-const price = require('./../commands/price');
-const convert = require('./../commands/convert');
-const balance = require('./../commands/balance');
-const top = require('./../commands/top');
-const poll = require('./../commands/poll');
-const prefix = require('./../commands/prefix');
-const stats = require('./../commands/stats');
-const flip = require('./../commands/flip');
-const dice = require('./../commands/dice');
-const ping = require('./../commands/ping');
-const info = require('./../commands/info');
-const help = require('./../commands/help');
+const price = require('./../commands/crypto/price');
+const convert = require('./../commands/crypto/convert');
+const balance = require('./../commands/crypto/balance');
+const top = require('./../commands/crypto/top');
+const poll = require('./../commands/utils/poll');
+const prefix = require('./../commands/admin/prefix');
+const stats = require('./../commands/utils/stats');
+const flip = require('./../commands/utils/flip');
+const dice = require('./../commands/utils/dice');
+const ping = require('./../commands/utils/ping');
+const info = require('./../commands/utils/info');
+const help = require('./../commands/utils/help');
 
 module.exports = {
     price,

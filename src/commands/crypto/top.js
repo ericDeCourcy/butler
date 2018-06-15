@@ -1,7 +1,7 @@
 const { RichEmbed } = require('discord.js');
-const Command = require('./command');
-const Ticker = require('./../ticker');
-const { Crypto } = require('./../bags/models');
+const Command = require('./../command');
+const Ticker = require('./../../ticker');
+const { Crypto } = require('./../../bags/models');
 
 class Top extends Command {
 

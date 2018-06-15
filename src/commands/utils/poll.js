@@ -1,6 +1,6 @@
 const { RichEmbed } = require('discord.js');
-const Command = require('./command');
-const { discord } = require('./../client');
+const Command = require('./../command');
+const { discord } = require('./../../client');
 
 class Poll extends Command {
 

@@ -1,5 +1,5 @@
-const Command = require('./command');
-const { prefix: getPrefix } = require('./../servers');
+const Command = require('./../command');
+const { prefix: getPrefix } = require('./../../servers');
 
 class Help extends Command {
 

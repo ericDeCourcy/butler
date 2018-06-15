@@ -1,7 +1,7 @@
 const { RichEmbed } = require('discord.js');
-const Command = require('./command');
-const Btc = require('./../services/btc');
-const Ethplorer = require('./../services/ethplorer');
+const Command = require('./../command');
+const Btc = require('./../../services/btc');
+const Ethplorer = require('./../../services/ethplorer');
 
 class Balance extends Command {
 

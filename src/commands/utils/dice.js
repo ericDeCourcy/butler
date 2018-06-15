@@ -1,5 +1,5 @@
-const Command = require('./command');
-const { rand } = require('./../helpers');
+const Command = require('./../command');
+const { rand } = require('./../../helpers');
 
 class Dice extends Command {
 
