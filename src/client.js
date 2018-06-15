@@ -28,7 +28,10 @@ const login = () => {
 
     return new Promise((resolve, reject) => {
         discord.login(process.env.DISCORD_TOKEN);
-        discord.once('ready', () => resolve());
+        discord.once('ready', () => {
+            discord.user.setUsername('Butler');
+            resolve();
+        });
     });
 };
 

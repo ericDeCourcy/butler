@@ -19,9 +19,9 @@ class Info extends Command {
     execute({ msg, prepare }) {
         msg.channel.send(prepare(`A general purpose, open-source Cryptocurrency Discord Bot.
 
-**GitHub:** https://github.com/oyed/cryptobutler
+**GitHub:** https://github.com/oyed/butler
 **Support:** https://discord.gg/2VBKbEH
-**Vote for CryptoButler:** https://discordbots.org/bot/395189067719114752/vote
+**Vote for Butler:** https://discordbots.org/bot/395189067719114752/vote
 
 Made by OYΞD#1337 (https://oyed.io)
 

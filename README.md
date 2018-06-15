@@ -1,9 +1,9 @@
-# CryptoButler
+# Butler
 
 [![Status](https://discordbots.org/api/widget/status/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
 [![Servers](https://discordbots.org/api/widget/servers/395189067719114752.svg?noavatar=true)](https://discordbots.org/bot/395189067719114752)
 [![Discord](https://img.shields.io/discord/451786133156790275.svg?style=flat-square)](https://discord.gg/2VBKbEH)
-[![License](https://img.shields.io/github/license/oyed/cryptobutler.svg?style=flat-square)](https://github.com/oyed/cryptobutler/blob/master/LICENSE)
+[![License](https://img.shields.io/github/license/oyed/butler.svg?style=flat-square)](https://github.com/oyed/butler/blob/master/LICENSE)
 
 A general purpose Cryptocurrency Discord Bot.
 
@@ -179,7 +179,7 @@ Prints out Usage text for the Butler. E.g.
 
 ### Environment Variables
 
-CryptoButler uses `dotenv` for Env Var management. Copy the `.env.example` file to `.env` and use the guide below to fill out the variables:
+Butler uses `dotenv` for Env Var management. Copy the `.env.example` file to `.env` and use the guide below to fill out the variables:
 
 - `DISCORD_TOKEN` - Your Discord Bot Token, found [here](https://discordapp.com/developers/applications/me).
 - `DISCORDBOTS_TOKEN` [Optional] - Your DiscordBots.org API Key, used to inform DiscordBots of the Server Count.
@@ -192,7 +192,7 @@ CryptoButler uses `dotenv` for Env Var management. Copy the `.env.example` file 
 
 ### Migrations
 
-CryptoButler uses Migrations to make sure Database Integrity is maintained. Before developing with CryptoButler, you'll want to make sure you run the migrations via the following command:
+Butler uses Migrations to make sure Database Integrity is maintained. Before developing with Butler, you'll want to make sure you run the migrations via the following command:
 
 ```
 npm run migrate
@@ -202,7 +202,7 @@ Additionally, this command should be run after every deployment to make sure you
 
 ### Seeders
 
-If it is your first time setting up CryptoButler, you'll need to run the Database Seeders to populate the Database with the initial data.
+If it is your first time setting up Butler, you'll need to run the Database Seeders to populate the Database with the initial data.
 
 ```
 npm run seed
