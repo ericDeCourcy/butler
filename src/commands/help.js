@@ -7,9 +7,9 @@ class Help extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Shows all available Commands.';
+        super({
+            desc: 'Shows all available Commands.',
+        });
     }
 
     /**
@@ -46,7 +46,7 @@ class Help extends Command {
                 paramsStr += ` ${range}`;
             }
 
-            content += `\`${prefix}${keys[c]}${paramsStr}\` - ${cmd.description}
+            content += `\`${prefix}${keys[c]}${paramsStr}\` - ${cmd.desc}
 `;
         }
 

@@ -6,9 +6,9 @@ class Info extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Prints general information on the Bot and where to find Support.';
+        super({
+            desc: 'Prints general information on the Bot and where to find Support.',
+        });
     }
 
     /**

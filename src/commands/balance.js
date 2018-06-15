@@ -9,18 +9,18 @@ class Balance extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.params = {
-            ticker: {
-                required: true,
-                range: ['btc', 'eth', 'tokens'],
+        super({
+            desc: 'Returns the balance of the given Wallet.',
+            params: {
+                ticker: {
+                    required: true,
+                    range: ['btc', 'eth', 'tokens'],
+                },
+                address: {
+                    required: true,
+                },
             },
-            address: {
-                required: true,
-            },
-        };
-        this.description = 'Returns the balance of the given Wallet.';
+        });
     }
 
     /**

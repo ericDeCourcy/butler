@@ -7,9 +7,9 @@ class Dice extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Rolls a 6-sided dice.';
+        super({
+            desc: 'Rolls a 6-sided dice.',
+        });
     }
 
     /**

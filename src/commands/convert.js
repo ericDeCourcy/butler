@@ -8,20 +8,20 @@ class Convert extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.params = {
-            amount: {
-                required: true,
+        super({
+            desc: 'Converts between Cryptocurrencies.',
+            params: {
+                amount: {
+                    required: true,
+                },
+                from: {
+                    required: true,
+                },
+                to: {
+                    required: true,
+                },
             },
-            from: {
-                required: true,
-            },
-            to: {
-                required: true,
-            },
-        };
-        this.description = 'Converts between Cryptocurrencies.';
+        });
     }
 
     /**

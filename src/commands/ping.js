@@ -6,9 +6,9 @@ class Ping extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Returns the latency between Discord and the Bot.';
+        super({
+            desc: 'Returns the latency between Discord and the Bot.',
+        });
     }
 
     /**

@@ -8,9 +8,9 @@ class Stats extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Statistics about the current Server.';
+        super({
+            desc: 'Statistics about the current Server.',
+        });
     }
 
     /**

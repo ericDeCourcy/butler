@@ -9,19 +9,19 @@ class Top extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.params = {
-            type: {
-                required: true,
-                range: ['gainers', 'losers'],
+        super({
+            desc: 'The top perfomers by type for the given period.',
+            params: {
+                type: {
+                    required: true,
+                    range: ['gainers', 'losers'],
+                },
+                period: {
+                    default: '24h',
+                    range: ['1h', '24h', '7d'],
+                },
             },
-            period: {
-                default: '24h',
-                range: ['1h', '24h', '7d'],
-            },
-        };
-        this.description = 'The top perfomers by type for the given period.';
+        });
     }
 
     /**

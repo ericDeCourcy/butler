@@ -9,14 +9,14 @@ class Price extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.params = {
-            id: {
-                required: true,
+        super({
+            desc: 'Shows CoinMarketCap data for the given Cryptocurrency.',
+            params: {
+                id: {
+                    required: true,
+                },
             },
-        };
-        this.description = 'Shows CoinMarketCap data for the given Cryptocurrency.';
+        });
     }
 
     /**

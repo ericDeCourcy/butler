@@ -2,8 +2,15 @@ class Command {
 
     /**
      * Initializes the new Command Instance.
+     *
+     * @param {Object} config
      */
-    constructor() {
+    constructor(config) {
+        config = Object.assign({
+            params: {},
+            desc: '',
+        }, config);
+
         /**
          * Whether the command is enabled for use or not.
          *
@@ -16,14 +23,14 @@ class Command {
          *
          * @type {Array}
          */
-        this.params = {};
+        this.params = config.params;
 
         /**
          * The Help Text for this Command.
          *
          * @type {String}
          */
-        this.description = '';
+        this.desc = config.desc;
     }
 
     /**

@@ -8,15 +8,15 @@ class Poll extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.params = {
-            question: {
-                required: true,
-                full: true,
+        super({
+            desc: 'Creates a Poll with the given options on extra lines.',
+            params: {
+                question: {
+                    required: true,
+                    full: true,
+                },
             },
-        };
-        this.description = 'Creates a Poll with the given options on extra lines.';
+        });
 
         /**
          * The alphabet. That's all.

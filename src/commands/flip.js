@@ -7,9 +7,9 @@ class Flip extends Command {
      * Initializes the new Command Instance.
      */
     constructor() {
-        super();
-
-        this.description = 'Flips a coin. That\'s all.';
+        super({
+            desc: 'Flips a coin. That\'s all.',
+        });
     }
 
     /**
