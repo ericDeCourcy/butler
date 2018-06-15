@@ -9,6 +9,7 @@ class Flip extends Command {
     constructor() {
         super({
             desc: 'Flips a coin. That\'s all.',
+            aliases: ['f'],
         });
     }
 

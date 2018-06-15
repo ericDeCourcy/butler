@@ -8,6 +8,7 @@ class Ping extends Command {
     constructor() {
         super({
             desc: 'Returns the latency between Discord and the Bot.',
+            aliases: ['p'],
         });
     }
 

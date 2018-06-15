@@ -9,6 +9,7 @@ class Command {
         config = Object.assign({
             params: {},
             desc: '',
+            aliases: [],
         }, config);
 
         /**
@@ -31,6 +32,13 @@ class Command {
          * @type {String}
          */
         this.desc = config.desc;
+
+        /**
+         * All of the aliases for the Command.
+         *
+         * @type {Array}
+         */
+        this.aliases = config.aliases;
     }
 
     /**

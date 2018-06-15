@@ -8,6 +8,7 @@ class Info extends Command {
     constructor() {
         super({
             desc: 'Prints general information on the Bot and where to find Support.',
+            aliases: ['i'],
         });
     }
 

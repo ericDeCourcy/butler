@@ -20,6 +20,7 @@ class Balance extends Command {
                     required: true,
                 },
             },
+            aliases: ['bal'],
         });
     }
 

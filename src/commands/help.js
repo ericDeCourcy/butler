@@ -9,6 +9,7 @@ class Help extends Command {
     constructor() {
         super({
             desc: 'Shows all available Commands.',
+            aliases: ['h'],
         });
     }
 

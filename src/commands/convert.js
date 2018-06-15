@@ -21,6 +21,7 @@ class Convert extends Command {
                     required: true,
                 },
             },
+            aliases: ['c'],
         });
     }
 

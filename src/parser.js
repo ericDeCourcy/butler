@@ -5,6 +5,20 @@ const { prefix: getPrefix } = require('./servers');
 const { log } = require('./stats');
 
 const supported = Object.keys(commands);
+const totalCommands = supported.length;
+const aliases = {};
+let aliasKeys = [];
+
+// Compile all Aliases.
+for (let c = 0; c < totalCommands; c++) {
+    const cmd = commands[supported[c]];
+    const total = cmd.aliases.length;
+
+    for (let a = 0; a < total; a++) {
+        aliases[cmd.aliases[a]] = supported[c];
+    }
+}
+aliasKeys = Object.keys(aliases);
 
 const prepare = msg => {
     return `\u200B${msg}`;
@@ -37,15 +51,22 @@ const parse = msg => {
     content = content.substr(prefix.length);
     const lines = content.split('\n');
     const paramsRaw = lines[0].split(' ');
-    const cmd = paramsRaw[0].toLowerCase();
+    let cmd = paramsRaw[0].toLowerCase();
     paramsRaw.shift();
     lines.shift();
+
+    // Check if the Command is supported or is an alias.
+    if (supported.indexOf(cmd) === -1) {
+        if (aliasKeys.indexOf(cmd) !== -1) {
+            cmd = aliases[cmd];
+        } else {
+            return false;
+        }
+    }
 
     if (
         // Double-check the user specified a command.
         !cmd.length ||
-        // Check that the command is supported by the Bot.
-        supported.indexOf(cmd) === -1 ||
         // Check that the command is enabled.
         (
             !commands[cmd].enabled &&
