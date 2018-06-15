@@ -6,6 +6,7 @@ const poll = require('./../commands/poll');
 const prefix = require('./../commands/prefix');
 const stats = require('./../commands/stats');
 const flip = require('./../commands/flip');
+const dice = require('./../commands/dice');
 const ping = require('./../commands/ping');
 const info = require('./../commands/info');
 const help = require('./../commands/help');
@@ -19,6 +20,7 @@ module.exports = {
     prefix,
     stats,
     flip,
+    dice,
     ping,
     info,
     help,

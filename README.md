@@ -146,6 +146,14 @@ Flips a coin. That's all.
 !butler flip
 ```
 
+### `dice`
+
+Rolls a 6-sided dice.
+
+```
+!butler dice
+```
+
 ### `ping`
 
 Returns the latency between Discord and the Bot.
