@@ -7,7 +7,7 @@
         "drop": "sequelize db:migrate:undo:all"
     },
     "dependencies": {
-        "dblapi.js": "^2.0.1",
+        "dblapi.js": "^2.1.0",
         "discord.js": "^11.3.2",
         "dotenv": "^4.0.0",
         "erlpack": "github:discordapp/erlpack",
