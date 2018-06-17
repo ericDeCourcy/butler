@@ -1,4 +1,5 @@
 const Command = require('./../command');
+const { prefix: getPrefix } = require('./../../servers');
 const { update } = require('./../../servers');
 
 class Prefix extends Command {
@@ -11,7 +12,7 @@ class Prefix extends Command {
             desc: 'Sets the command prefix for the Server.',
             params: {
                 prefix: {
-                    required: true,
+                    default: null,
                 },
             },
             ownerOnly: true,
@@ -23,8 +24,17 @@ class Prefix extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute({ msg, params, prepare, is }) {
+        if (is.dm) {
+            return;
+        }
+
         const { prefix } = params;
+
+        if (prefix === null) {
+            msg.channel.send(prepare(`Prefix for this Server: **${getPrefix(msg.guild.id)}**`));
+            return;
+        }
 
         if (!prefix.length) {
             return;
