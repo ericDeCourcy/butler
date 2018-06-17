@@ -67,6 +67,8 @@ const parse = msg => {
     if (
         // Double-check the user specified a command.
         !cmd.length ||
+        // Check that the user can run this command.
+        (cmd.ownerOnly && parseInt(msg.member.guild.ownerID) !== parseInt(msg.member.user.id)) ||
         // Check that the command is enabled.
         (
             !commands[cmd].enabled &&

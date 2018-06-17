@@ -11,6 +11,7 @@ class Command {
             params: {},
             desc: '',
             aliases: [],
+            ownerOnly: false,
         }, config);
 
         /**
@@ -40,6 +41,13 @@ class Command {
          * @type {Array}
          */
         this.aliases = config.aliases;
+
+        /**
+         * Whether or not this Command can only be run by the Server Owner.
+         *
+         * @type {[type]}
+         */
+        this.ownerOnly = config.ownerOnly;
     }
 
     /**

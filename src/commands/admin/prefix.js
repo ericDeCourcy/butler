@@ -14,6 +14,7 @@ class Prefix extends Command {
                     required: true,
                 },
             },
+            ownerOnly: true,
         });
     }
 
@@ -23,12 +24,6 @@ class Prefix extends Command {
      * @param {Object} config
      */
     execute({ msg, params }) {
-        const { member } = msg;
-
-        if (parseInt(member.guild.ownerID) !== parseInt(member.user.id)) {
-            return;
-        }
-
         const { prefix } = params;
 
         if (!prefix.length) {
