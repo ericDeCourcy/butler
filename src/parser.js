@@ -70,10 +70,7 @@ const parse = msg => {
         // Check that the user can run this command.
         (cmd.ownerOnly && parseInt(msg.member.guild.ownerID) !== parseInt(msg.member.user.id)) ||
         // Check that the command is enabled.
-        (
-            !commands[cmd].enabled &&
-            developers.indexOf(msg.author.id) !== -1
-        )
+        (!commands[cmd].enabled && developers.indexOf(msg.author.id) !== -1)
     ) {
         return false;
     }

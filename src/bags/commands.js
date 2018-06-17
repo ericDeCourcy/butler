@@ -11,6 +11,7 @@ const ping = require('./../commands/utils/ping');
 const info = require('./../commands/utils/info');
 const help = require('./../commands/utils/help');
 const debug = require('./../commands/dev/debug');
+const eval = require('./../commands/dev/eval');
 
 module.exports = {
     price,
@@ -26,4 +27,5 @@ module.exports = {
     info,
     help,
     debug,
+    eval,
 };
