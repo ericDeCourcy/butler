@@ -46,7 +46,7 @@ Returns the balance of the given Wallet. Currently supported currencies:
 
 ```
 !butler balance btc 15urYnyeJe3gwbGJ74wcX89Tz7ZtsFDVew
-!butler balance token 0x57d90b64a1a57749b0f932f1a3395792e12e7055
+!butler balance tokens 0x57d90b64a1a57749b0f932f1a3395792e12e7055
 ```
 
 ### `top`
