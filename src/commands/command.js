@@ -7,6 +7,7 @@ class Command {
      */
     constructor(config) {
         config = Object.assign({
+            enabled: true,
             params: {},
             desc: '',
             aliases: [],
@@ -17,7 +18,7 @@ class Command {
          *
          * @type {Boolean}
          */
-        this.enabled = true;
+        this.enabled = config.enabled;
 
         /**
          * Names parameters for this Command.

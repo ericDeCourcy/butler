@@ -10,6 +10,7 @@ const dice = require('./../commands/utils/dice');
 const ping = require('./../commands/utils/ping');
 const info = require('./../commands/utils/info');
 const help = require('./../commands/utils/help');
+const debug = require('./../commands/dev/debug');
 
 module.exports = {
     price,
@@ -24,4 +25,5 @@ module.exports = {
     ping,
     info,
     help,
+    debug,
 };

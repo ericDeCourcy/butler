@@ -62,6 +62,7 @@ class Price extends Command {
                 url: `https://coinmarketcap.com/currencies/${data.slug}`,
                 color,
                 footer: {
+                    icon_url: `https://s2.coinmarketcap.com/static/img/coins/16x16/${data.id}.png`,
                     text: `Updated ${diffStr} ago`,
                 },
                 fields: [

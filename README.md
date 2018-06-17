@@ -5,7 +5,7 @@
 [![Discord](https://img.shields.io/discord/451786133156790275.svg?style=flat-square)](https://discord.gg/2VBKbEH)
 [![License](https://img.shields.io/github/license/oyed/butler.svg?style=flat-square)](https://github.com/oyed/butler/blob/master/LICENSE)
 
-A general purpose Cryptocurrency Discord Bot.
+A general purpose Cryptocurrency & Polls Discord Bot.
 
 Feel free to [vote for the Bot on DiscordBots](https://discordbots.org/bot/395189067719114752/vote) if you enjoy using it.
 
