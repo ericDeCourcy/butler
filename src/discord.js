@@ -1,6 +1,6 @@
 const { discord } = require('./client');
-const { parse } = require('./parser');
 const { joined, left } = require('./servers');
+const parse = require('./parser');
 
 const register = () => {
     const jobs = [];

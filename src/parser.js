@@ -28,7 +28,7 @@ aliasKeys = Object.keys(aliases);
  *
  * @return {Boolean}
  */
-const parse = msg => {
+module.exports = msg => {
     // Don't listen to other Bots -ever-.
     if (msg.author.bot) {
         return false;
@@ -198,8 +198,4 @@ const parse = msg => {
     });
 
     return true;
-};
-
-module.exports = {
-    parse,
 };
