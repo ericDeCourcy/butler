@@ -1,5 +1,5 @@
 const Command = require('./../command');
-const { rand } = require('./../../helpers');
+const { rand, prepare } = require('./../../helpers');
 
 class Dice extends Command {
 
@@ -18,7 +18,7 @@ class Dice extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, prepare }) {
+    execute({ msg }) {
         msg.channel.send(prepare(rand(1, 6)));
     }
 

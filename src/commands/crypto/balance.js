@@ -2,6 +2,7 @@ const { RichEmbed } = require('discord.js');
 const Command = require('./../command');
 const Btc = require('./../../services/btc');
 const Ethplorer = require('./../../services/ethplorer');
+const { prepare } = require('./../../helpers');
 
 class Balance extends Command {
 
@@ -29,7 +30,7 @@ class Balance extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare }) {
+    execute({ msg, params }) {
         const { address } = params;
         const ticker = params.ticker.toLowerCase();
         let sentMessage = null;

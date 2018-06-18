@@ -1,6 +1,7 @@
 const Command = require('./../command');
 const Ticker = require('./../../ticker');
 const { Crypto } = require('./../../bags/models');
+const { prepare } = require('./../../helpers');
 
 class Convert extends Command {
 
@@ -30,7 +31,7 @@ class Convert extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare }) {
+    execute({ msg, params }) {
         const amount = parseFloat(params.amount);
         const data = {
             from: {

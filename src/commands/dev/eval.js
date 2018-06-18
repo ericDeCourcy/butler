@@ -22,7 +22,7 @@ class Eval extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, lines, prepare }) {
+    execute({ msg, lines }) {
         const code = lines.join(' ');
         const logs = [];
         let isError = false;

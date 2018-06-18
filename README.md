@@ -176,6 +176,7 @@ Prints out Usage text for the Butler. E.g.
 
 ```
 !butler help
+!butler help price
 ```
 
 ## Development

@@ -1,5 +1,5 @@
 const Command = require('./../command');
-const { rand } = require('./../../helpers');
+const { rand, prepare } = require('./../../helpers');
 
 class Flip extends Command {
 
@@ -18,7 +18,7 @@ class Flip extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, prepare }) {
+    execute({ msg }) {
         let text = 'Heads';
 
         if (rand(0, 1) === 1) {

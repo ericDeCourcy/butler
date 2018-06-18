@@ -2,6 +2,7 @@ const { RichEmbed } = require('discord.js');
 const { Crypto } = require('./../../bags/models');
 const Command = require('./../command');
 const ticker = require('./../../ticker');
+const { prepare } = require('./../../helpers');
 
 class Price extends Command {
 
@@ -24,7 +25,7 @@ class Price extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare }) {
+    execute({ msg, params }) {
         const from = params.id.toLowerCase();
         let currency = null;
         let sentMessage = null;

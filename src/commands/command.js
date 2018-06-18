@@ -11,7 +11,15 @@ class Command {
             params: {},
             desc: '',
             aliases: [],
-            ownerOnly: false,
+            botPerms: {
+                required: [],
+                optional: [],
+            },
+            userPerms: {
+                required: [],
+                optional: [],
+            },
+            guildOwnerOnly: false,
         }, config);
 
         /**
@@ -43,11 +51,25 @@ class Command {
         this.aliases = config.aliases;
 
         /**
-         * Whether or not this Command can only be run by the Server Owner.
+         * All of the Permissions required by the Bot to use this command.
          *
-         * @type {[type]}
+         * @type {Object}
          */
-        this.ownerOnly = config.ownerOnly;
+        this.botPerms = config.botPerms;
+
+        /**
+         * All of the Permissions required by the User to use this command.
+         *
+         * @type {Object}
+         */
+        this.userPerms = config.userPerms;
+
+        /**
+         * Whether or not this Command can only be run by the Guild Owner.
+         *
+         * @type {Boolean}
+         */
+        this.guildOwnerOnly = config.guildOwnerOnly;
     }
 
     /**

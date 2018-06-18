@@ -2,8 +2,10 @@ const commands = require('./bags/commands');
 const developers = require('./bags/developers');
 const { discord } = require('./client');
 const { prefix: getPrefix } = require('./servers');
+const { prepare } = require('./helpers');
 const { log } = require('./stats');
 
+// Initial stores for all Commands.
 const supported = Object.keys(commands);
 const totalCommands = supported.length;
 const aliases = {};
@@ -20,14 +22,17 @@ for (let c = 0; c < totalCommands; c++) {
 }
 aliasKeys = Object.keys(aliases);
 
-const prepare = msg => {
-    return `\u200B${msg}`;
-};
-
+/**
+ * Parses incoming messages and, if needed, executes commands.
+ *
+ * @param {String} msg
+ *
+ * @return {Boolean}
+ */
 const parse = msg => {
     // Don't listen to other Bots -ever-.
     if (msg.author.bot) {
-        return;
+        return false;
     }
 
     // Fetch the Prefix used for this Server (May be custom).
@@ -57,26 +62,73 @@ const parse = msg => {
 
     // Check if the Command is supported or is an alias.
     if (supported.indexOf(cmd) === -1) {
+        cmd = '';
+
         if (aliasKeys.indexOf(cmd) !== -1) {
             cmd = aliases[cmd];
-        } else {
-            return false;
         }
     }
 
     if (
         // Double-check the user specified a command.
         !cmd.length ||
-        // Check that the user can run this command.
-        (commands[cmd].ownerOnly && parseInt(msg.member.guild.ownerID) !== parseInt(msg.member.user.id)) ||
+        // Check that the user can run this command if Guild Owner only.
+        (commands[cmd].guildOwnerOnly && parseInt(msg.member.guild.ownerID) !== parseInt(msg.member.user.id)) ||
         // Check that the command is enabled.
         (!commands[cmd].enabled && developers.indexOf(parseInt(msg.author.id)) === -1)
     ) {
         return false;
     }
 
+    // Fetch the command instance.
+    const command = commands[cmd];
+
+    // Check that the Bot & User have permission to execute the command.
+    const rawPerms = {
+        bot: command.botPerms,
+        user: command.userPerms,
+    };
+    const perms = {
+        bot: {},
+        user: {},
+    };
+    const pass = {
+        bot: true,
+        user: true,
+    };
+
+    if (!isDm && msg.channel.type === 'text') {
+        for (let i = 0; i < 2; i++) {
+            const store = i === 0 ? 'bot' : 'user';
+            const user = i === 0 ? discord.user : msg.member;
+            const compiledPerms = rawPerms[store].required.concat(rawPerms[store].optional);
+            const totalPerms = compiledPerms.length;
+
+            for (let p = 0; p < totalPerms; p++) {
+                const perm = compiledPerms[p];
+                const isRequired = rawPerms[store].required.indexOf(perm) !== -1;
+
+                perms[store][perm] = msg.channel.permissionsFor(user).has(perm);
+
+                if (!perms[store][perm] && isRequired) {
+                    pass[store] = false;
+                }
+            }
+        }
+    }
+
+    if (!pass.bot) {
+        msg.channel.send(prepare(`Sorry, I need the following permission(s) to do that:
+\`${rawPerms.bot.required.join(', ')}\``));
+        return false;
+    } else if (!pass.user) {
+        msg.channel.send(prepare(`You need the following permission(s) to do that:
+\`${rawPerms.user.required.join(', ')}\``));
+        return false;
+    }
+
     // Check the Parameters are valid.
-    const paramKeys = Object.keys(commands[cmd].params);
+    const paramKeys = Object.keys(command.params);
     const totalParams = paramKeys.length;
     const params = {};
     const invalid = () => {
@@ -91,7 +143,7 @@ const parse = msg => {
 **${formatPrefix} ${cmd}`;
 
         for (let p = 0; p < totalParams; p++) {
-            const param = commands[cmd].params[paramKeys[p]];
+            const param = command.params[paramKeys[p]];
             let range = `[${paramKeys[p]}]`;
 
             if (param.range) {
@@ -107,7 +159,7 @@ const parse = msg => {
     };
 
     for (let p = 0; p < totalParams; p++) {
-        const param = commands[cmd].params[paramKeys[p]];
+        const param = command.params[paramKeys[p]];
         let given = paramsRaw[p];
 
         if (given === undefined || given === null) {
@@ -144,21 +196,22 @@ const parse = msg => {
     }
 
     // Now that all checks have passed - execute the Command!
-    commands[cmd].execute({
+    command.execute({
         msg,
         params,
         lines,
+        perms,
         commands, // Purely for `help` command.
-        prepare,
         log,
         is: {
             dm: isDm,
             mention: isMention,
         },
     });
+
+    return true;
 };
 
 module.exports = {
-    prepare,
     parse,
 };

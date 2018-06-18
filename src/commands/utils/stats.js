@@ -1,6 +1,7 @@
 const { RichEmbed } = require('discord.js');
 const { Stat } = require('./../../bags/models');
 const Command = require('./../command');
+const { prepare } = require('./../../helpers');
 
 class Stats extends Command {
 
@@ -18,7 +19,7 @@ class Stats extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare }) {
+    execute({ msg, params }) {
         if (msg.guild === null) {
             return;
         }
@@ -59,7 +60,7 @@ class Stats extends Command {
             }
 
             sentMessage.edit(new RichEmbed({
-                title: `Statistics for ${msg.guild.name}`,
+                title: `Statistics for "${msg.guild.name}"`,
                 fields,
             }));
         }).catch(() => {

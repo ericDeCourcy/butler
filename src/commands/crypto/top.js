@@ -2,6 +2,7 @@ const { RichEmbed } = require('discord.js');
 const Command = require('./../command');
 const Ticker = require('./../../ticker');
 const { Crypto } = require('./../../bags/models');
+const { prepare } = require('./../../helpers');
 
 class Top extends Command {
 
@@ -29,7 +30,7 @@ class Top extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare }) {
+    execute({ msg, params }) {
         const { type, period } = params;
         let sentMessage = null;
         let results = [];

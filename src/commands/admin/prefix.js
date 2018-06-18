@@ -1,6 +1,7 @@
 const Command = require('./../command');
 const { prefix: getPrefix } = require('./../../servers');
 const { update } = require('./../../servers');
+const { prepare } = require('./../../helpers');
 
 class Prefix extends Command {
 
@@ -15,7 +16,10 @@ class Prefix extends Command {
                     default: null,
                 },
             },
-            ownerOnly: true,
+            userPerms: {
+                required: ['ADMINISTRATOR'],
+                optional: [],
+            },
         });
     }
 
@@ -24,7 +28,7 @@ class Prefix extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, prepare, is }) {
+    execute({ msg, params, is }) {
         if (is.dm) {
             return;
         }

@@ -1,4 +1,5 @@
 const Command = require('./../command');
+const { prepare } = require('./../../helpers');
 
 class Info extends Command {
 
@@ -17,7 +18,7 @@ class Info extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, prepare }) {
+    execute({ msg }) {
         msg.channel.send(prepare(`A general purpose, open-source Cryptocurrency Discord Bot.
 
 **GitHub:** https://github.com/oyed/butler

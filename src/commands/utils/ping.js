@@ -1,4 +1,5 @@
 const Command = require('./../command');
+const { prepare } = require('./../../helpers');
 
 class Ping extends Command {
 
@@ -17,7 +18,7 @@ class Ping extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, prepare }) {
+    execute({ msg }) {
         const diff = Date.now() - msg.createdTimestamp;
 
         msg.channel.send(prepare(`Pong! I heard you in ${diff / 1000}s.`));

@@ -19,7 +19,7 @@ class Debug extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, prepare }) {
+    execute({ msg }) {
         const fields = [
             {
                 name: 'Total Servers',
