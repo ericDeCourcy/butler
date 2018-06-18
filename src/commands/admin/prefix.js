@@ -1,5 +1,6 @@
 const Command = require('./../command');
 const { prefix: getPrefix } = require('./../../servers');
+const { ADMINISTRATOR } = require('./../../constants/perms');
 const { update } = require('./../../servers');
 const { prepare } = require('./../../helpers');
 
@@ -17,7 +18,7 @@ class Prefix extends Command {
                 },
             },
             userPerms: {
-                required: ['ADMINISTRATOR'],
+                required: [ADMINISTRATOR],
                 optional: [],
             },
         });
