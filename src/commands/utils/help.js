@@ -25,7 +25,10 @@ class Help extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, commands, params }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, commands, params } = config;
         const prefix = getPrefix(msg.guild !== null ? msg.guild.id : null);
         const keys = Object.keys(commands);
         const total = keys.length;

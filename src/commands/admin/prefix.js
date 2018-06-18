@@ -30,7 +30,11 @@ class Prefix extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, is }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, params, is } = config;
+
         if (is.dm) {
             return;
         }

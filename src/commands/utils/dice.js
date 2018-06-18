@@ -18,7 +18,11 @@ class Dice extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg } = config;
+
         msg.channel.send(prepare(rand(1, 6)));
     }
 

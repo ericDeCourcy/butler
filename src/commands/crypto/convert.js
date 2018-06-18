@@ -31,7 +31,10 @@ class Convert extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, params } = config;
         const amount = parseFloat(params.amount);
         const data = {
             from: {

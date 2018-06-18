@@ -30,7 +30,10 @@ class Balance extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, params } = config;
         const { address } = params;
         const ticker = params.ticker.toLowerCase();
         let sentMessage = null;

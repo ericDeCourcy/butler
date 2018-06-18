@@ -18,7 +18,11 @@ class Flip extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg } = config;
+
         let text = 'Heads';
 
         if (rand(0, 1) === 1) {

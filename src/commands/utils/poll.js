@@ -2,6 +2,7 @@ const { RichEmbed } = require('discord.js');
 const Command = require('./../command');
 const { discord } = require('./../../client');
 const { prepare } = require('./../../helpers');
+const { log } = require('./../../stats');
 
 class Poll extends Command {
 
@@ -32,10 +33,14 @@ class Poll extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params, lines, log, is }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, params, is } = config;
         const { question } = params;
         const answers = [];
         const used = [];
+        let { lines } = config;
         let totalAnswers = lines.length;
         let printDesc = true;
 

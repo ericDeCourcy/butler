@@ -19,7 +19,11 @@ class Stats extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg } = config;
+
         if (msg.guild === null) {
             return;
         }

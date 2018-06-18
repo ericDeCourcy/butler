@@ -3,7 +3,6 @@ const developers = require('./bags/developers');
 const { discord } = require('./client');
 const { prefix: getPrefix } = require('./servers');
 const { prepare } = require('./helpers');
-const { log } = require('./stats');
 
 // Initial stores for all Commands.
 const supported = Object.keys(commands);
@@ -185,13 +184,6 @@ const parse = msg => {
         params[paramKeys[p]] = given;
     }
 
-    // Log the Statistics.
-    log('commands_executed', 'all');
-
-    if (!isDm) {
-        log('commands_executed', msg.guild.id);
-    }
-
     // Now that all checks have passed - execute the Command!
     command.execute({
         msg,
@@ -199,7 +191,6 @@ const parse = msg => {
         lines,
         perms,
         commands, // Purely for `help` command.
-        log,
         is: {
             dm: isDm,
             mention: isMention,

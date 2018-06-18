@@ -30,7 +30,10 @@ class Top extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg, params }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg, params } = config;
         const { type, period } = params;
         let sentMessage = null;
         let results = [];

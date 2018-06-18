@@ -1,4 +1,5 @@
 const merge = require('deepmerge');
+const { log } = require('./../stats');
 
 class Command {
 
@@ -75,7 +76,14 @@ class Command {
      * @param {Object} config
      */
     execute(config) {
-        //
+        const { msg, is } = config;
+
+        // Log the Statistics.
+        log('commands_executed', 'all');
+
+        if (!is.dm) {
+            log('commands_executed', msg.guild.id);
+        }
     }
 
 }

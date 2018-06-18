@@ -18,7 +18,11 @@ class Info extends Command {
      *
      * @param {Object} config
      */
-    execute({ msg }) {
+    execute(config) {
+        super.execute(config);
+
+        const { msg } = config;
+
         msg.channel.send(prepare(`A general purpose, open-source Cryptocurrency Discord Bot.
 
 **GitHub:** https://github.com/oyed/butler
