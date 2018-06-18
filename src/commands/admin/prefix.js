@@ -17,9 +17,10 @@ class Prefix extends Command {
                     default: null,
                 },
             },
-            userPerms: {
-                required: [ADMINISTRATOR],
-                optional: [],
+            perms: {
+                user: {
+                    required: [ADMINISTRATOR],
+                },
             },
         });
     }

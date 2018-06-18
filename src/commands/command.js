@@ -1,3 +1,5 @@
+const merge = require('deepmerge');
+
 class Command {
 
     /**
@@ -6,18 +8,20 @@ class Command {
      * @param {Object} config
      */
     constructor(config) {
-        config = Object.assign({
+        config = merge({
             enabled: true,
             params: {},
             desc: '',
             aliases: [],
-            botPerms: {
-                required: [],
-                optional: [],
-            },
-            userPerms: {
-                required: [],
-                optional: [],
+            perms: {
+                bot: {
+                    required: [],
+                    optional: [],
+                },
+                user: {
+                    required: [],
+                    optional: [],
+                },
             },
             guildOwnerOnly: false,
         }, config);
@@ -51,18 +55,11 @@ class Command {
         this.aliases = config.aliases;
 
         /**
-         * All of the Permissions required by the Bot to use this command.
+         * All of the Permissions required to use this command.
          *
          * @type {Object}
          */
-        this.botPerms = config.botPerms;
-
-        /**
-         * All of the Permissions required by the User to use this command.
-         *
-         * @type {Object}
-         */
-        this.userPerms = config.userPerms;
+        this.perms = config.perms;
 
         /**
          * Whether or not this Command can only be run by the Guild Owner.

@@ -35,7 +35,7 @@ class Help extends Command {
 
             if (keys.indexOf(cmdStr) !== -1 || !commands[cmdStr].enabled) {
                 const cmd = commands[cmdStr];
-                const { botPerms, userPerms, params } = cmd;
+                const { perms, params } = cmd;
                 const paramKeys = Object.keys(params);
                 const totalParams = paramKeys.length;
                 const fields = [];
@@ -73,32 +73,32 @@ class Help extends Command {
                 }
 
                 // Bot Permissions.
-                if (botPerms.required.length) {
+                if (perms.bot.required.length) {
                     fields.push({
                         name: 'Required Permissions (Bot)',
-                        value: botPerms.required.join(', '),
+                        value: perms.bot.required.join(', '),
                     });
                 }
 
-                if (botPerms.optional.length) {
+                if (perms.bot.optional.length) {
                     fields.push({
                         name: 'Optional Permissions (Bot)',
-                        value: botPerms.optional.join(', '),
+                        value: perms.bot.optional.join(', '),
                     });
                 }
 
                 // User Permissions.
-                if (userPerms.required.length) {
+                if (perms.user.required.length) {
                     fields.push({
                         name: 'Required Permissions (User)',
-                        value: userPerms.required.join(', '),
+                        value: perms.user.required.join(', '),
                     });
                 }
 
-                if (userPerms.optional.length) {
+                if (perms.user.optional.length) {
                     fields.push({
                         name: 'Optional Permissions (User)',
-                        value: userPerms.optional.join(', '),
+                        value: perms.user.optional.join(', '),
                     });
                 }
 

@@ -84,10 +84,6 @@ const parse = msg => {
     const command = commands[cmd];
 
     // Check that the Bot & User have permission to execute the command.
-    const rawPerms = {
-        bot: command.botPerms,
-        user: command.userPerms,
-    };
     const perms = {
         bot: {},
         user: {},
@@ -101,12 +97,13 @@ const parse = msg => {
         for (let i = 0; i < 2; i++) {
             const store = i === 0 ? 'bot' : 'user';
             const user = i === 0 ? discord.user : msg.member;
-            const compiledPerms = rawPerms[store].required.concat(rawPerms[store].optional);
+            const rawPerms = command.perms[store];
+            const compiledPerms = rawPerms.required.concat(rawPerms.optional);
             const totalPerms = compiledPerms.length;
 
             for (let p = 0; p < totalPerms; p++) {
                 const perm = compiledPerms[p];
-                const isRequired = rawPerms[store].required.indexOf(perm) !== -1;
+                const isRequired = rawPerms.required.indexOf(perm) !== -1;
 
                 perms[store][perm] = msg.channel.permissionsFor(user).has(perm);
 
@@ -119,11 +116,11 @@ const parse = msg => {
 
     if (!pass.bot) {
         msg.channel.send(prepare(`Sorry, I need the following permission(s) to do that:
-\`${rawPerms.bot.required.join(', ')}\``));
+\`${command.perms.bot.required.join(', ')}\``));
         return false;
     } else if (!pass.user) {
         msg.channel.send(prepare(`You need the following permission(s) to do that:
-\`${rawPerms.user.required.join(', ')}\``));
+\`${command.perms.user.required.join(', ')}\``));
         return false;
     }
 
