@@ -193,6 +193,7 @@ Butler uses `dotenv` for Env Var management. Copy the `.env.example` file to `.e
 - `DISCORD_TOKEN` - Your Discord Bot Token, found [here](https://discordapp.com/developers/applications/me).
 - `DISCORDBOTS_TOKEN` [Optional] - Your DiscordBots.org API Key, used to inform DiscordBots of the Server Count.
 - `ETHPLORER_TOKEN` - Your Ethplorer.io API Key. This can be left as `freekey`.
+- `BUGSNAG_API_KEY` [Optional] - Your Bugsnag API Key for error reporting.
 - `COMMAND_PREFIX` - The prefix that all Commands must be prefixed with.
 - `CRYPTO_UPDATE_INTERVAL` - The milliseconds between querying CMC for new Cryptocurrencies.
 - `INFO_UPDATE_INTERVAL` - The milliseconds between querying CMC for all market data.

@@ -7,6 +7,7 @@
         "drop": "sequelize db:migrate:undo:all"
     },
     "dependencies": {
+        "bugsnag": "^2.4.3",
         "dblapi.js": "^2.1.0",
         "deepmerge": "^2.1.1",
         "discord.js": "^11.3.2",

@@ -1,33 +1,39 @@
 require('dotenv').config();
 
+const bugsnag = require('bugsnag');
 const { login, discord, sequelize } = require('./client');
 const discordEvents = require('./discord');
 const ticker = require('./ticker');
 const jobs = require('./jobs');
 const servers = require('./servers');
-const models = require('./bags/models'); // Registers Models before initialising.
+const models = require('./bags/models'); // eslint-disable-line no-unused-vars
 
+// Register Bugsnag.
+const bugsnagApiKey = process.env.BUGSNAG_API_KEY;
+
+if (bugsnagApiKey !== undefined && bugsnagApiKey.length) {
+    bugsnag.register(bugsnagApiKey);
+}
+
+// Start the Bot.
 console.log('Starting...');
 
-sequelize.authenticate().then(() => {
-    return sequelize.sync();
-}).then(() => {
-    return servers.fetch();
-}).then(() => {
-    return ticker.fetch();
-}).then(() => {
-    return login();
-}).then(() => {
-    return discordEvents.register();
-}).then(() => {
-    console.log('Ready!');
+sequelize.authenticate()
+    .then(() => sequelize.sync())
+    .then(() => servers.fetch())
+    .then(() => ticker.fetch())
+    .then(() => login())
+    .then(() => discordEvents.register())
+    .then(() => {
+        console.log('Ready!');
 
-    // Register any on-going Jobs.
-    jobs.register();
+        // Register any on-going Jobs.
+        jobs.register();
 
-    // Updates all the Prices initially.
-    ticker.update();
-}).catch(e => {
+        // Updates all the Prices initially.
+        ticker.update();
+    }
+).catch(e => {
     console.error(e);
     exit();
 });
@@ -42,12 +48,9 @@ const exit = () => {
         return;
     }
 
-    jobs.kill();
-
     killed = true;
-    discord.destroy().then(() => {
-        process.exit();
-    });
+    jobs.kill();
+    discord.destroy().then(() => process.exit());
 };
 
 // Register the Listeners for different exit events.
