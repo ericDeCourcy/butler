@@ -5,21 +5,21 @@ const { prefix: getPrefix } = require('./servers');
 const { prepare } = require('./helpers');
 
 // Initial stores for all Commands.
-const supported = Object.keys(commands);
-const totalCommands = supported.length;
+const supported = Object.keys(commands);    //array of all supported commands: price, convert, balance, etc..
+const totalCommands = supported.length;     //number of all supported commands
 const aliases = {};
 let aliasKeys = [];
 
 // Compile all Aliases.
 for (let c = 0; c < totalCommands; c++) {
     const cmd = commands[supported[c]];
-    const total = cmd.aliases.length;
+    const total = cmd.aliases.length;       //sets total equal to the number of aliases for the specified command
 
-    for (let a = 0; a < total; a++) {
-        aliases[cmd.aliases[a]] = supported[c];
+    for (let a = 0; a < total; a++) {       
+        aliases[cmd.aliases[a]] = supported[c];     //  ???
     }
 }
-aliasKeys = Object.keys(aliases);
+aliasKeys = Object.keys(aliases);       //  ???
 
 /**
  * Parses incoming messages and, if needed, executes commands.
@@ -29,26 +29,27 @@ aliasKeys = Object.keys(aliases);
  * @return {Boolean}
  */
 module.exports = msg => {
+    
     // Don't listen to other Bots -ever-.
     if (msg.author.bot) {
         return false;
     }
 
     // Fetch the Prefix used for this Server (May be custom).
-    const isDm = msg.guild === null;
-    const isMention = msg.isMentioned(discord.user);
-    let prefix = getPrefix(isDm ? null : msg.guild.id);
-    let { content } = msg;
+    const isDm = msg.guild === null;                        //  ???
+    const isMention = msg.isMentioned(discord.user);        //  ???
+    let prefix = getPrefix(isDm ? null : msg.guild.id);     // if the message is a DM, prefix = null; otherwise prefix = msg.guild.id
+    let { content } = msg;                                  // content = msg
 
     // Allow executing commands via mentioning the Bot instead of the prefix.
     if (isMention) {
-        const split = content.split(' ');
-        prefix = `${split[0]} `;
+        const split = content.split(' ');       //creates an array populated with objects in msg separated by ' '
+        prefix = `${split[0]} `;                //SHOULD be '!', but is whatever comes before first ' ' in msg
     }
 
     // If the message doesn't start with the prefix then we don't care about it.
-    if (content.indexOf(prefix) !== 0) {
-        return false;
+    if (content.indexOf(prefix) !== 0) {        // ??? where declare 'content' ?
+        return false;                           // we done here
     }
 
     // Parse the message content in to command and parameters.
