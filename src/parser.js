@@ -48,23 +48,23 @@ module.exports = msg => {
     }
 
     // If the message doesn't start with the prefix then we don't care about it.
-    if (content.indexOf(prefix) !== 0) {        // ??? where declare 'content' ?
+    if (content.indexOf(prefix) !== 0) {        //  if the prefix isn't at the first spot in msg content, then...
         return false;                           // we done here
     }
 
     // Parse the message content in to command and parameters.
-    content = content.substr(prefix.length);
-    const lines = content.split('\n');
-    const paramsRaw = lines[0].split(' ');
-    let cmd = paramsRaw[0].toLowerCase();
-    paramsRaw.shift();
-    lines.shift();
+    content = content.substr(prefix.length);        //content = everything after the prefix character(s)
+    const lines = content.split('\n');              //array "lines" set to array of each different line in the message
+    const paramsRaw = lines[0].split(' ');          //array paramsRaw = all words in first line of msg
+    let cmd = paramsRaw[0].toLowerCase();           //cmd is set to first element in paramsRaw (in lower case)
+    paramsRaw.shift();                              //shift everything down and delete first element in paramsRaw
+    lines.shift();                                  //shift everything down and delete first element in lines
 
     // Check if the Command is supported or is an alias.
-    if (supported.indexOf(cmd) === -1) {
+    if (supported.indexOf(cmd) === -1) {            //checks "supported" array for a match to cmd
         cmd = '';
 
-        if (aliasKeys.indexOf(cmd) !== -1) {
+        if (aliasKeys.indexOf(cmd) !== -1) {        // checks "aliasKeys" for same thing
             cmd = aliases[cmd];
         }
     }
@@ -75,7 +75,7 @@ module.exports = msg => {
         // Check that the user can run this command if Guild Owner only.
         (commands[cmd].guildOwnerOnly && parseInt(msg.member.guild.ownerID) !== parseInt(msg.member.user.id)) ||
         // Check that the command is enabled.
-        (!commands[cmd].enabled && developers.indexOf(parseInt(msg.author.id)) === -1)
+        (!commands[cmd].enabled && developers.indexOf(parseInt(msg.author.id)) === -1)  // important - there's an enable/disable feature for commands
     ) {
         return false;
     }
@@ -83,29 +83,29 @@ module.exports = msg => {
     // Fetch the command instance.
     const command = commands[cmd];
 
-    // Check that the Bot & User have permission to execute the command.
-    const perms = {
-        bot: {},
+    // Check that the Bot & User have permission to execute the command
+    const perms = {     // ???
+        bot: {},        //
         user: {},
     };
     const pass = {
         bot: true,
-        user: true,
+        user: true,     // everything here
     };
 
     if (!isDm && msg.channel.type === 'text') {
         for (let i = 0; i < 2; i++) {
-            const store = i === 0 ? 'bot' : 'user';
+            const store = i === 0 ? 'bot' : 'user';     //for first iteration of loop, assume its a bot. second iteration, assume user
             const user = i === 0 ? discord.user : msg.member;
-            const rawPerms = command.perms[store];
-            const compiledPerms = rawPerms.required.concat(rawPerms.optional);
-            const totalPerms = compiledPerms.length;
+            const rawPerms = command.perms[store];      //get the perms for that command for bot or user as specified
+            const compiledPerms = rawPerms.required.concat(rawPerms.optional);  //??? gotta figure out what .required and .optional mean
+            const totalPerms = compiledPerms.length;    
 
             for (let p = 0; p < totalPerms; p++) {
                 const perm = compiledPerms[p];
-                const isRequired = rawPerms.required.indexOf(perm) !== -1;
+                const isRequired = rawPerms.required.indexOf(perm) !== -1;      //saves true or false into isRequired
 
-                perms[store][perm] = msg.channel.permissionsFor(user).has(perm);
+                perms[store][perm] = msg.channel.permissionsFor(user).has(perm);        // ??? - I'm guessing that it checks to see if the user has the correct permission for that command
 
                 if (!perms[store][perm] && isRequired) {
                     pass[store] = false;
@@ -114,6 +114,7 @@ module.exports = msg => {
         }
     }
 
+    //returns false if you/your bot doesn't have the right permissions
     if (!pass.bot) {
         msg.channel.send(prepare(`Sorry, I need the following permission(s) to do that:
 \`${command.perms.bot.required.join(', ')}\``));
@@ -186,7 +187,7 @@ module.exports = msg => {
     }
 
     // Now that all checks have passed - execute the Command!
-    command.execute({
+    command.execute({                                           
         msg,
         params,
         lines,
